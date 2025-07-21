@@ -26,9 +26,9 @@ if(isset($_GET['token'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificación de cuenta</title>
-    <link rel="stylesheet" href="cs/login.css">
+    <link rel="stylesheet" href="../cs/estilos.css">
 </head>
-<body>
+<body class="verification-page-body">
     <div class="container">
         <h1>Verificación de cuenta</h1>
         <p class="mensaje"><?php echo $mensaje; ?></p>

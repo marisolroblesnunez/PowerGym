@@ -552,6 +552,7 @@ body {
     border: 1px solid rgba(138, 43, 226, 0.3); /* Borde púrpura */
     color: #ffffff;
     text-align: center;
+    margin: auto; /* Centrado horizontal */
 }
 
 .container h2 {
@@ -736,4 +737,16 @@ body {
 .volver:hover {
     background: linear-gradient(45deg, #9370db, #8a2be2);
     box-shadow: 0 5px 20px rgba(147, 112, 219, 0.4);
+}
+
+/* Estilos específicos para la página de verificación de cuenta */
+.verification-page-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.verification-page-body .container {
+    margin: auto; /* Centrado horizontal */
 }

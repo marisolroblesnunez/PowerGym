@@ -22,7 +22,7 @@ if ($host === 'localhost' ||
     define('DB_PASS', '');
     define('DB_NAME', 'gimnasio');
     // Usando el nombre correcto de la carpeta del proyecto
-    define('URL_ADMIN','http://localhost/gimnasio9del77/admin');
+    define('URL_ADMIN','http://localhost/PowerGym/admin');
     define('USAR_EMAIL_REAL', false); // En local, usamos correos simulados
 
 } else {
@@ -33,7 +33,7 @@ if ($host === 'localhost' ||
     define('DB_NAME', 'dbs14399129');
     // Usando un nombre de carpeta consistente.
     // ¡IMPORTANTE! Asegúrate de que la carpeta en tu servidor real se llame así.
-    define('URL_ADMIN','http://www.alumnamarisol.com/gimnasio9del77/admin');
+    define('URL_ADMIN','http://www.alumnamarisol.com/PowerGym/admin');
     define('USAR_EMAIL_REAL', true); // En producción, enviamos correos de verdad
 }
 ?>
