@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Chatbot Personalizado</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="bot-avatar">🤖</div>
+            <h3>Asistente Virtual</h3>
+            <div class="bot-status">En línea • Responde en segundos</div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-bubble">
+                    ¡Hola! Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?
+                </div>
+            </div>
+            <div class="quick-responses">
+                <div class="quick-response" onclick="sendQuickMessage('¿Qué servicios ofrecen?')">Servicios</div>
+                <div class="quick-response" onclick="sendQuickMessage('¿Cuáles son sus horarios?')">Horarios</div>
+                <div class="quick-response" onclick="sendQuickMessage('¿Cómo los contacto?')">Contacto</div>
+            </div>
+        </div>
+
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="typing-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="chat-input-container">
+            <div class="input-group">
+                <input type="text" id="chatInput" placeholder="Escribe tu mensaje aquí..." maxlength="500">
+                <button id="sendButton" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/funciones.js"></script>
+</body>
+</html>

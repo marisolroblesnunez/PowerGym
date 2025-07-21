@@ -1,0 +1,246 @@
+/* Estilos para el botón de burbuja del chatbot */
+#chatbot-bubble {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    transition: transform 0.3s ease;
+}
+
+#chatbot-bubble:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para el contenedor del widget del chatbot */
+#chatbot-widget-container {
+    position: fixed;
+    bottom: 90px; /* Por encima de la burbuja */
+    right: 20px;
+    z-index: 999; /* Ligeramente por debajo de la burbuja */
+    display: flex; /* Para que el chat-container se centre si es necesario */
+    flex-direction: column;
+    /* Animación de entrada/salida */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#chatbot-widget-container.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none; /* Permite hacer clic a través cuando está oculto */
+}
+
+/* Estilos originales del chatbot, ajustados para el widget */
+.chat-container {
+    width: 350px; /* Ancho más pequeño para el widget */
+    height: 500px; /* Altura más pequeña para el widget */
+    background: white;
+    border-radius: 15px; /* Bordes ligeramente más suaves */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Sombra ajustada */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color:white;
+    padding: 15px; /* Padding ajustado */
+    text-align: center;
+    position: relative;
+    border-top-left-radius: 15px; /* Asegura bordes redondeados */
+    border-top-right-radius: 15px;
+}
+
+.bot-avatar {
+    width: 40px; /* Tamaño de avatar ajustado */
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    margin: 0 auto 8px; /* Margen ajustado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px; /* Tamaño de fuente ajustado */
+}
+
+.bot-status {
+    font-size: 11px; /* Tamaño de fuente ajustado */
+    opacity: 0.9;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px; /* Padding ajustado */
+    overflow-y: auto;
+    background: #f8f9fa;
+}
+
+.message {
+    margin-bottom: 10px; /* Margen ajustado */
+    display: flex;
+    align-items: flex-end;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message-bubble {
+    max-width: 75%; /* Ancho máximo ajustado */
+    padding: 10px 14px; /* Padding ajustado */
+    border-radius: 16px; /* Bordes ajustados */
+    font-size: 13px; /* Tamaño de fuente ajustado */
+    line-height: 1.4;
+    position: relative;
+}
+
+.message.bot .message-bubble {
+    background: white;
+    color: #333;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1); /* Sombra más sutil */
+}
+
+.message.user .message-bubble {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.message-time {
+    font-size: 10px; /* Tamaño de fuente ajustado */
+    opacity: 0.6;
+    margin: 4px 8px 0; /* Margen ajustado */
+}
+
+.typing-indicator {
+    display: none;
+    padding: 8px 14px; /* Padding ajustado */
+    background: white;
+    border-radius: 16px; /* Bordes ajustados */
+    margin-bottom: 10px; /* Margen ajustado */
+    max-width: 75%;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.typing-dots {
+    display: flex;
+    gap: 3px; /* Espacio ajustado */
+}
+
+.typing-dots span {
+    width: 7px; /* Tamaño ajustado */
+    height: 7px;
+    background: #ccc;
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-8px); } /* Movimiento ajustado */
+}
+
+.chat-input-container {
+    padding: 15px; /* Padding ajustado */
+    background: white;
+    border-top: 1px solid #e9ecef;
+    border-bottom-left-radius: 15px; /* Asegura bordes redondeados */
+    border-bottom-right-radius: 15px;
+}
+
+.input-group {
+    display: flex;
+    gap: 8px; /* Espacio ajustado */
+    align-items: center;
+}
+
+#chatInput {
+    flex: 1;
+    padding: 10px 14px; /* Padding ajustado */
+    border: 1px solid #e9ecef; /* Borde más sutil */
+    border-radius: 20px; /* Bordes ajustados */
+    font-size: 13px; /* Tamaño de fuente ajustado */
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#chatInput:focus {
+    border-color: #667eea;
+}
+
+#sendButton {
+    width: 40px; /* Tamaño ajustado */
+    height: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 16px; /* Tamaño de fuente ajustado */
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sendButton:hover {
+    transform: scale(1.05);
+}
+
+#sendButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.quick-responses {
+    display: flex;
+    gap: 6px; /* Espacio ajustado */
+    margin-top: 8px; /* Margen ajustado */
+    flex-wrap: wrap;
+}
+
+.quick-response {
+    padding: 5px 10px; /* Padding ajustado */
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 12px; /* Bordes ajustados */
+    font-size: 11px; /* Tamaño de fuente ajustado */
+    cursor: pointer;
+    transition: all 0.2s;
+    color: black; /* Texto en color negro */
+}
+
+.quick-response:hover {
+    background: #667eea;
+    color: white;
+}
+
+/* Scrollbar personalizado */
+.chat-messages::-webkit-scrollbar {
+    width: 5px; /* Ancho ajustado */
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2.5px; /* Bordes ajustados */
+}
