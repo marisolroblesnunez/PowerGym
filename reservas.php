@@ -11,7 +11,7 @@ session_start();
 // 1. PROTEGER LA PÁGINA
 // Si el usuario no está logueado, redirigirlo a la página de login.
 if (!isset($_SESSION['logueado']) || !$_SESSION['logueado']) {
-    header('Location: login.php');
+    header('Location: login.php?action=clases');
     exit(); // Detener la ejecución del script
 }
 

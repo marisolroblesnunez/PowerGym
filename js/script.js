@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     loadReservas();
                 } else {
                     // Redirigir al login si no está logueado
-                    window.location.href = 'login.php';
+                    window.location.href = 'login.php?action=clases';
                 }
             })
             .catch(error => {
