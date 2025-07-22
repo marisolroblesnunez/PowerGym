@@ -11,6 +11,7 @@ class TestimonioController {
     }
 
     public function procesarEnvioTestimonio() {
+        session_start(); // Asegurarse de que la sesión esté iniciada
         $errores = [];
         $mensaje_exito = '';
 
@@ -32,7 +33,7 @@ class TestimonioController {
 
             if (empty($errores)) {
                 if ($this->testimonioDB->guardarTestimonio($id_usuario, $mensaje)) {
-                    $mensaje_exito = '¡Gracias por tu testimonio! Será revisado antes de ser publicado.';
+                    $mensaje_exito = 'Gracias por tu opinión. ¡Pronto estará visible para otros usuarios!';
                     $_POST['mensaje'] = ''; // Limpiar campo
                 } else {
                     $errores[] = 'Hubo un error al guardar tu testimonio. Por favor, inténtalo de nuevo.';

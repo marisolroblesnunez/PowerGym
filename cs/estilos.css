@@ -192,12 +192,24 @@ body {
     text-shadow: 0 0 10px rgba(147, 112, 219, 0.5);
 }
 
+.circle-item-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.circle-item-link:hover,
+.circle-item-link:focus {
+    text-decoration: none;
+    color: inherit;
+}
+
 .circle-menu {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
+    gap: 20px;
     flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 .circle-item {

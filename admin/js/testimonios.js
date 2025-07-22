@@ -27,7 +27,7 @@ async function cargarTestimonios() {
 
     try {
         // Pide al controlador la lista de todos los testimonios para el admin.
-        const respuesta = await realizarPeticion('../controllers/testimonioController.php?accion=listarAdmin', 'GET');
+        const respuesta = await realizarPeticion('../api/index.php?resource=testimonios&accion=listarAdmin', 'GET');
         
         if (respuesta.success && respuesta.data.length > 0) {
             // Si hay datos, se limpia la tabla y se rellena.
