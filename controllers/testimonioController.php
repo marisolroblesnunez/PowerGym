@@ -21,14 +21,14 @@ class TestimonioController {
         $id_usuario = $_SESSION['usuario_id'] ?? null;
 
         if (!$id_usuario) {
-            $errores[] = 'Debes iniciar sesión para dejar un testimonio.';
+            $errores[] = 'Debes iniciar sesión para dejar una reseña.';
         }
             $mensaje = trim($_POST['mensaje'] ?? '');
 
             if (empty($mensaje)) {
-                $errores[] = 'El mensaje del testimonio es obligatorio.';
+                $errores[] = 'El mensaje de la reseña es obligatorio.';
             } elseif (strlen($mensaje) < 10) {
-                $errores[] = 'El testimonio debe tener al menos 10 caracteres.';
+                $errores[] = 'La reseña debe tener al menos 10 caracteres.';
             }
 
             if (empty($errores)) {
@@ -36,7 +36,7 @@ class TestimonioController {
                     $mensaje_exito = 'Gracias por tu opinión. ¡Pronto estará visible para otros usuarios!';
                     $_POST['mensaje'] = ''; // Limpiar campo
                 } else {
-                    $errores[] = 'Hubo un error al guardar tu testimonio. Por favor, inténtalo de nuevo.';
+                    $errores[] = 'Hubo un error al guardar tu reseña. Por favor, inténtalo de nuevo.';
                 }
             }
         }
