@@ -6,7 +6,7 @@ $testimonioController = new TestimonioController();
 
 // Redirigir si el usuario no está logueado
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login.php?action=rese");
+    header("Location: login.php");
     exit();
 }
 
