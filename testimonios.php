@@ -351,7 +351,7 @@ $is_logged_in = isset($_SESSION['usuario_id']);
                         </form>
                     <?php else: ?>
                         <div class="login-prompt">
-                            <p>Si no eres miembro, aprobecha y <a href="login.php">inicia sesion</a> para dejar tu reseña.</p>
+                            <a href="login.php">Escribe aquí tu reseña</a><p>Necesitas registrarte para poder compartirla</p>
                         </div>
                     <?php endif; ?>
                 </div>
