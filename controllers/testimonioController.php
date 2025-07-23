@@ -11,18 +11,16 @@ class TestimonioController {
     }
 
     public function procesarEnvioTestimonio() {
-        session_start(); // Asegurarse de que la sesión esté iniciada
         $errores = [];
         $mensaje_exito = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Obtener el id_usuario de la sesión
-        session_start();
-        $id_usuario = $_SESSION['user_id'] ?? null;
+            $id_usuario = $_SESSION['user_id'] ?? null;
 
-        if (!$id_usuario) {
-            $errores[] = 'Debes iniciar sesión para dejar una reseña.';
-        }
+            if (!$id_usuario) {
+                $errores[] = 'Debes iniciar sesión para dejar una reseña.';
+            }
+            
             $mensaje = trim($_POST['mensaje'] ?? '');
 
             if (empty($mensaje)) {

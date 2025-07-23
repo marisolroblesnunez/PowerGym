@@ -84,6 +84,55 @@ $mensaje_val = $_POST['mensaje'] ?? '';
             margin: 0;
         }
 
+        .header-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-volver, .home-btn {
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-volver {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-volver:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .home-btn {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.4), rgba(75, 0, 130, 0.4));
+            border-color: rgba(138, 43, 226, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+            border-color: rgba(138, 43, 226, 0.9);
+        }
+        .home-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.5s;
+        }
+        .home-btn:hover::before {
+            left: 100%;
+        }
+
         .btn-volver {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -184,7 +233,10 @@ $mensaje_val = $_POST['mensaje'] ?? '';
     <div class="page-container">
         <header class="page-header">
             <h1>Escribe tu Reseña</h1>
-            <a href="testimonios.php" class="btn-volver">← Volver a Reseñas</a>
+            <div class="header-buttons">
+                <a href="index.html" class="home-btn">PowerGym</a>
+                <a href="testimonios.php" class="btn-volver">← Volver a Reseñas</a>
+            </div>
         </header>
 
         <div class="form-testimonio">
