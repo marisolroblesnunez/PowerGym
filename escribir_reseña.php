@@ -5,7 +5,7 @@ require_once __DIR__ . '/controllers/testimonioController.php';
 $testimonioController = new TestimonioController();
 
 // Redirigir si el usuario no está logueado
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }

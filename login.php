@@ -49,6 +49,7 @@ if(isset($_SESSION['logueado']) && $_SESSION['logueado'] == true){
     <div class="container">
         <h2>Iniciar Sesión</h2>
         <form method="post" action="controllers/usuarioController.php">
+            <input type="hidden" name="action" value="<?php echo isset($_GET['action']) ? htmlspecialchars($_GET['action']) : ''; ?>">
             <input type="email" name="email" required placeholder="Correo electrónico">
             <input type="password" name="password" required placeholder="Contraseña">
             <input type="submit" name="login" value="Iniciar Sesión">

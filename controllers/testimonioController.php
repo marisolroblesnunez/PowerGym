@@ -18,7 +18,7 @@ class TestimonioController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Obtener el id_usuario de la sesión
         session_start();
-        $id_usuario = $_SESSION['usuario_id'] ?? null;
+        $id_usuario = $_SESSION['user_id'] ?? null;
 
         if (!$id_usuario) {
             $errores[] = 'Debes iniciar sesión para dejar una reseña.';

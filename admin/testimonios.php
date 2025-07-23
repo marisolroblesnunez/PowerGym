@@ -4,11 +4,6 @@
 // públicamente en el sitio web. Requiere autenticación de administrador para su acceso.
 session_start();
 
-require_once __DIR__ . '/../controllers/usuarioController.php';
-
-// Crear una instancia del controlador de usuario para verificar la sesión
-$usuarioController = new UsuarioController();
-
 // Si el usuario no está logueado, redirigir a la página de login
 if (!isset($_SESSION['logueado']) || !$_SESSION['logueado'] || !isset($_SESSION['usuario']['tipo']) || $_SESSION['usuario']['tipo'] != 1) {
     header("Location: ../login.php"); // Redirige al login universal
