@@ -7,6 +7,29 @@
 if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
+
+// Caso especial: si el usuario ya está logueado y viene del botón de login principal.
+if (isset($_SESSION['logueado']) && $_SESSION['logueado'] === true && isset($_GET['action']) && $_GET['action'] === 'login') {
+    // Mostrar una página con el mensaje y detener la ejecución.
+    echo '<!DOCTYPE html>';
+    echo '<html lang="es">';
+    echo '<head>';
+    echo '    <meta charset="UTF-8">';
+    echo '    <meta name="viewport" content="width=device-width, initial-scale=1.0">';
+    echo '    <title>Ya has iniciado sesión - PowerGym</title>';
+    echo '    <link rel="stylesheet" href="cs/estilos.css">';
+    echo '</head>';
+    echo '<body class="login-page-body">';
+    echo '    <div class="container">';
+    echo '        <h2>¡Ya has iniciado sesión!</h2>';
+    echo '        <p style="margin-bottom: 20px;">No es necesario que inicies sesión de nuevo.</p>';
+    echo '        <a href="index.html" class="volver">Volver a la página principal</a>';
+    echo '    </div>';
+    echo '</body>';
+    echo '</html>';
+    exit(); // Detener la ejecución del resto del script.
+}
+
 $url = '';//creo que seria index
 if(!isset($_GET['action'])){
     //ir al index
