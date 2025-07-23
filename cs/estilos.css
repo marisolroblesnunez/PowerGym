@@ -48,6 +48,7 @@ body {
 
 /* Header */
 .header {
+    position: relative; /* Para posicionar el botón de login */
     text-align: center;
     padding: 2rem 0;
     background: rgba(0, 0, 0, 0.4);
@@ -70,6 +71,26 @@ body {
     font-size: 1.2rem;
     color: #cccccc;
     font-style: italic;
+}
+
+.login-btn {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #8a2be2, #4b0082);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(138, 43, 226, 0.7);
+}
+
+.login-btn:hover {
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
 }
 
 @keyframes logoGlow {
