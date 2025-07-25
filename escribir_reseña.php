@@ -206,6 +206,25 @@ $mensaje_val = $_POST['mensaje'] ?? '';
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
+        .logout-button-form {
+            display: inline-block;
+            float: right; /* Alinea el botón a la derecha */
+            margin-top: 15px; /* Espacio respecto al formulario */
+            background: linear-gradient(135deg, #8a2be2, #4b0082);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .logout-button-form:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+
         .error-list, .success-message {
             padding: 15px;
             margin-bottom: 20px;
@@ -263,6 +282,7 @@ $mensaje_val = $_POST['mensaje'] ?? '';
                     <button type="submit">Enviar Reseña</button>
                 </div>
             </form>
+            <a href="logout.php" class="logout-button-form">Cerrar Sesión</a>
         </div>
     </div>
 </body>
