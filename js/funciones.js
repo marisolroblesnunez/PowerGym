@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.logueado) {
-                        window.location.href = 'logout.php';
+                        window.location.href = 'logout.php?origen=index';
                     } else {
                         alert('¡Para cerrar sesion antes tienes que iniciar sesion!');
                     }
@@ -19,5 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     alert('Ocurrió un error al intentar cerrar la sesión. Por favor, inténtalo de nuevo.');
                 });
         });
+    }
+
+    // Mostrar mensaje de logout si está en la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('mensaje') && urlParams.get('mensaje') === 'logout_success') {
+        alert('Nos vemos luego, tu sesión se ha cerrado correctamente.');
+        // Limpiar la URL para que el mensaje no se muestre de nuevo si se recarga la página
+        window.history.replaceState({}, document.title, window.location.pathname);
     }
 });
