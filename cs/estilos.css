@@ -785,37 +785,40 @@ body {
     min-height: 100vh;
 }
 
-/* Estilos para mensajes en la página */
+/* Estilos para mensajes en la página (versión mejorada) */
 #page-message {
-    padding: 1rem 1.5rem;
-    margin: 1.5rem auto;
-    width: 90%;
-    max-width: 800px;
-    text-align: center;
+    position: fixed;
+    top: -100px; /* Empieza fuera de la pantalla */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: 90%;
+    padding: 1rem 2rem;
     border-radius: 10px;
+    background: rgba(25, 25, 25, 0.7);
+    backdrop-filter: blur(10px);
+    color: #f0f0f0;
     font-size: 1.1rem;
-    font-weight: 600;
-    border: 2px solid;
+    font-weight: 500;
+    z-index: 2000; /* Asegura que esté por encima de todo */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left-width: 6px;
     opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 #page-message.show {
+    top: 20px; /* Posición final al mostrarse */
     opacity: 1;
-    transform: translateY(0);
 }
 
 #page-message.success {
-    background-color: rgba(46, 184, 46, 0.2);
-    color: #a8e9a8;
-    border-color: #2eb82e;
+    border-left-color: #8a2be2; /* Púrpura de éxito */
 }
 
 #page-message.error {
-    background-color: rgba(217, 30, 24, 0.2);
-    color: #f0a0a0;
-    border-color: #d91e18;
+    border-left-color: #d91e18; /* Rojo de error */
 }
 
 .verification-page-body .container {
