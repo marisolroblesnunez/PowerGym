@@ -73,11 +73,16 @@ body {
     font-style: italic;
 }
 
-.login-btn {
+.header-buttons {
     position: absolute;
     top: 50%;
     right: 2rem;
     transform: translateY(-50%);
+    display: flex;
+    gap: 1rem;
+}
+
+.login-btn {
     background: linear-gradient(135deg, #8a2be2, #4b0082);
     color: white;
     padding: 10px 20px;
@@ -89,7 +94,7 @@ body {
 }
 
 .login-btn:hover {
-    transform: translateY(-50%) scale(1.05);
+    transform: scale(1.05);
     box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
 }
 
