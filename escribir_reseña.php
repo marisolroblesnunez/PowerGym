@@ -56,7 +56,7 @@ $mensaje_val = $_POST['mensaje'] ?? '';
 
         /* Contenedor principal */
         .page-container {
-            padding: 20px;
+            padding: 20px 20px 60px 20px; /* Aumenta el padding inferior para el botón */
             max-width: 800px; /* Ajustado para la página de formulario */
             margin: 50px auto;
             background: rgba(255, 255, 255, 0.1);
@@ -149,12 +149,13 @@ $mensaje_val = $_POST['mensaje'] ?? '';
         }
 
         /* Estilos del formulario */
-        .form-testimonio h2 {
+        .form-testimonio {
+            /* position: relative; */ /* No es necesario si el botón está dentro del flujo */
             text-align: center;
             margin-top: 0;
             color: #ffffff;
             text-shadow: 0 1px 3px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
+            margin-bottom: 10px; /* Reducido para dar espacio al botón */
         }
 
         .form-group {
@@ -206,10 +207,14 @@ $mensaje_val = $_POST['mensaje'] ?? '';
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
+        .logout-button-container {
+            display: flex;
+            justify-content: flex-end; /* Alinea el contenido a la derecha */
+            margin-top: 20px; /* Espacio entre el formulario y el botón */
+            padding-right: 15px; /* Pequeño padding para que no se pegue al borde */
+        }
+
         .logout-button-form {
-            display: inline-block;
-            float: right; /* Alinea el botón a la derecha */
-            margin-top: 15px; /* Espacio respecto al formulario */
             background: linear-gradient(135deg, #8a2be2, #4b0082);
             color: white;
             padding: 10px 20px;
@@ -281,8 +286,10 @@ $mensaje_val = $_POST['mensaje'] ?? '';
                 <div class="form-group">
                     <button type="submit">Enviar Reseña</button>
                 </div>
+                <div class="logout-button-container">
+                    <a href="logout.php" class="logout-button-form">Cerrar Sesión</a>
+                </div>
             </form>
-            <a href="logout.php" class="logout-button-form">Cerrar Sesión</a>
         </div>
     </div>
 </body>
