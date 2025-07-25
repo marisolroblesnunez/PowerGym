@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
             messageContainer.className = 'page-message '; // Limpiar clases previas
             messageContainer.classList.add(type, 'show');
 
-            // Ocultar el mensaje después de 5 segundos
+            // Ocultar el mensaje después de 3 segundos
             setTimeout(() => {
                 messageContainer.classList.remove('show');
-            }, 5000);
+            }, 3000);
         }
     }
 

@@ -785,32 +785,33 @@ body {
     min-height: 100vh;
 }
 
-/* Estilos para mensajes en la página (versión mejorada) */
+/* Estilos para notificaciones (toast) en la esquina superior derecha */
 #page-message {
-    position: fixed;
-    top: -100px; /* Empieza fuera de la pantalla */
-    left: 50%;
-    transform: translateX(-50%);
+    position: fixed; /* Fijo en la ventana para no estorbar */
+    top: 90px; /* Debajo de la altura aproximada del header */
+    right: -450px; /* Empieza fuera de la pantalla */
     width: auto;
-    max-width: 90%;
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    background: rgba(25, 25, 25, 0.7);
-    backdrop-filter: blur(10px);
+    max-width: 400px;
+    padding: 1.2rem 1.8rem;
+    border-radius: 8px;
+    background: rgba(30, 30, 30, 0.85);
+    backdrop-filter: blur(12px);
     color: #f0f0f0;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 500;
-    z-index: 2000; /* Asegura que esté por encima de todo */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 2000;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-left-width: 6px;
     opacity: 0;
-    transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transition: right 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.5s ease;
+    pointer-events: none;
 }
 
 #page-message.show {
-    top: 20px; /* Posición final al mostrarse */
+    right: 20px; /* Posición final al mostrarse */
     opacity: 1;
+    pointer-events: auto;
 }
 
 #page-message.success {
