@@ -785,6 +785,39 @@ body {
     min-height: 100vh;
 }
 
+/* Estilos para mensajes en la página */
+#page-message {
+    padding: 1rem 1.5rem;
+    margin: 1.5rem auto;
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: 2px solid;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#page-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#page-message.success {
+    background-color: rgba(46, 184, 46, 0.2);
+    color: #a8e9a8;
+    border-color: #2eb82e;
+}
+
+#page-message.error {
+    background-color: rgba(217, 30, 24, 0.2);
+    color: #f0a0a0;
+    border-color: #d91e18;
+}
+
 .verification-page-body .container {
     margin: auto; /* Centrado horizontal */
 }
