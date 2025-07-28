@@ -126,8 +126,8 @@
             <h3>Jueves</h3>
             <ul>
                 <li><strong>Desayuno:</strong> Yogur griego con granola casera y frutas frescas.</li>
-                <li><strong>Almuerzo:</strong> Wrap integral con hummus, vegetales crudos y pavo o pollo.</li>
-                <li><strong>Cena:</strong> Curry de garbanzos y espinacas con arroz basmati.</li>
+                <li><strong>Almuerzo:</strong> Paella de verduras y pollo (con arroz integral).</li>
+                <li><strong>Cena:</strong> Ensalada de tomate y cebolla.</li>
             </ul>
         </div>
 
@@ -143,8 +143,8 @@
         <div class="dieta-dia">
             <h3>Sábado</h3>
             <ul>
-                <li><strong>Desayuno:</strong> Pancakes de avena con sirope de arce puro y bayas.</li>
-                <li><strong>Almuerzo:</strong> Hamburguesa de lentejas en pan integral con ensalada.</li>
+                <li><strong>Desayuno:</strong> Tostadas de pan integral con tomate rallado, jamón serrano (magro) y un chorrito de aceite de oliva virgen extra.</li>
+                <li><strong>Almuerzo:</strong> Gazpacho andaluz y sardinas a la plancha con pimientos asados.</li>
                 <li><strong>Cena:</strong> Brochetas de pollo y vegetales a la parrilla con cuscús integral.</li>
             </ul>
         </div>
@@ -152,7 +152,7 @@
         <div class="dieta-dia">
             <h3>Domingo</h3>
             <ul>
-                <li><strong>Desayuno:</strong> Smoothie bowl con acai, plátano, frutos rojos y semillas de chía.</li>
+                <li><strong>Desayuno:</strong> Porridge de avena con leche (o bebida vegetal), canela y una pieza de fruta de temporada.</li>
                 <li><strong>Almuerzo:</strong> Pollo asado con patatas al vapor y ensalada verde.</li>
                 <li><strong>Cena:</strong> Sopa de verduras casera con un trozo de pan integral.</li>
             </ul>
