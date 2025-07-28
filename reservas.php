@@ -35,6 +35,7 @@ $email_usuario = $_SESSION['usuario']['email'] ?? 'Usuario';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservar Clases - PowerGym</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="cs/estilos.css">
     <style>
         /* Estilos específicos para la página de reservas con la nueva paleta */
         body.reservas-page {
@@ -175,6 +176,18 @@ $email_usuario = $_SESSION['usuario']['email'] ?? 'Usuario';
 </head>
 <body class="reservas-page">
 
+    <header class="header">
+        <div class="logo">
+            <h1>PowerGym</h1>
+            <p>Tu fuerza, nuestro compromiso</p>
+        </div>
+        <div class="header-buttons">
+            <a href="login.php?action=login" class="login-btn">Iniciar Sesión</a>
+            <a href="#" id="logout-btn" class="login-btn">Cerrar Sesión</a>
+        </div>
+        <div id="page-message" class="hidden"></div>
+    </header>
+
     <div class="reservas-container">
         <div class="welcome-header">
             <h1>¡Bienvenido, Gracias por confiar en nosotros! <br>Cada entrenamiento cuenta. ¡Sigue así! <?php echo htmlspecialchars($email_usuario); ?>!</h1>
@@ -193,6 +206,8 @@ $email_usuario = $_SESSION['usuario']['email'] ?? 'Usuario';
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/funciones.js"></script>
     <script src="js/reservas.js"></script>
 </body>
 </html>
