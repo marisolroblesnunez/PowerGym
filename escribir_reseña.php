@@ -26,6 +26,7 @@ $mensaje_val = $_POST['mensaje'] ?? '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escribir Reseña - PowerGym</title>
+    <link rel="stylesheet" href="cs/estilos.css">
     <style>
         /* === ESTILOS GENERALES === */
         body {
@@ -67,72 +68,6 @@ $mensaje_val = $_POST['mensaje'] ?? '';
             color: white;
         }
 
-        /* Encabezado de la página */
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .page-header h1 {
-            font-size: 2.5em;
-            color: #ffffff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            margin: 0;
-        }
-
-        .header-buttons {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .btn-volver, .home-btn {
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-volver {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-volver:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .home-btn {
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.4), rgba(75, 0, 130, 0.4));
-            border-color: rgba(138, 43, 226, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-        .home-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
-            border-color: rgba(138, 43, 226, 0.9);
-        }
-        .home-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-            transition: left 0.5s;
-        }
-        .home-btn:hover::before {
-            left: 100%;
-        }
-
         .btn-volver {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -142,6 +77,8 @@ $mensaje_val = $_POST['mensaje'] ?? '';
             text-decoration: none;
             font-weight: bold;
             transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-bottom: 20px;
         }
 
         .btn-volver:hover {
@@ -150,12 +87,10 @@ $mensaje_val = $_POST['mensaje'] ?? '';
 
         /* Estilos del formulario */
         .form-testimonio {
-            /* position: relative; */ /* No es necesario si el botón está dentro del flujo */
             text-align: center;
             margin-top: 0;
             color: #ffffff;
             text-shadow: 0 1px 3px rgba(0,0,0,0.2);
-            margin-bottom: 10px; /* Reducido para dar espacio al botón */
         }
 
         .form-group {
@@ -207,29 +142,6 @@ $mensaje_val = $_POST['mensaje'] ?? '';
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .logout-button-container {
-            display: flex;
-            justify-content: flex-end; /* Alinea el contenido a la derecha */
-            margin-top: 20px; /* Espacio entre el formulario y el botón */
-            padding-right: 15px; /* Pequeño padding para que no se pegue al borde */
-        }
-
-        .logout-button-form {
-            background: linear-gradient(135deg, #8a2be2, #4b0082);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .logout-button-form:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-        }
-
         .error-list, .success-message {
             padding: 15px;
             margin-bottom: 20px;
@@ -254,15 +166,19 @@ $mensaje_val = $_POST['mensaje'] ?? '';
 </head>
 <body>
     <div class="background-animation"></div>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>PowerGym</h1></a>
+            <p>Tu fuerza, nuestro compromiso</p>
+        </div>
+        <div class="header-buttons">
+            <a href="login.php?action=login" class="login-btn">Iniciar Sesión</a>
+            <a href="#" id="logout-btn" class="login-btn">Cerrar Sesión</a>
+        </div>
+        <div id="page-message" class="hidden"></div>
+    </header>
     <div class="page-container">
-        <header class="page-header">
-            <h1>Escribe tu Reseña</h1>
-            <div class="header-buttons">
-                <a href="index.html" class="home-btn">PowerGym</a>
-                <a href="testimonios.php" class="btn-volver">← Volver a Reseñas</a>
-            </div>
-        </header>
-
+        <a href="testimonios.php" class="btn-volver">← Volver a Reseñas</a>
         <div class="form-testimonio">
             <h2>¡Tu opinión nos importa mucho!</h2>
 
@@ -286,11 +202,10 @@ $mensaje_val = $_POST['mensaje'] ?? '';
                 <div class="form-group">
                     <button type="submit">Enviar Reseña</button>
                 </div>
-                <div class="logout-button-container">
-                    <a href="logout.php" class="logout-button-form">Cerrar Sesión</a>
-                </div>
             </form>
         </div>
     </div>
+    <script src="js/script.js"></script>
+    <script src="js/funciones.js"></script>
 </body>
 </html>
