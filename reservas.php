@@ -37,8 +37,7 @@ $email_usuario = $_SESSION['usuario']['email'] ?? 'Usuario';
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="cs/estilos.css">
     <style>
-        /* Estilos específicos para la página de reservas con la nueva paleta */
-        body.reservas-page {
+        .reservas-page {
             background-image: url('img/fondoGim.jpg');
             background-size: cover;
             background-position: center;
@@ -54,36 +53,6 @@ $email_usuario = $_SESSION['usuario']['email'] ?? 'Usuario';
             border-radius: 15px;
             text-align: center;
             border: 1px solid #6a0dad; /* Borde morado */
-        }
-        .welcome-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        .welcome-header h1 {
-            font-size: 2.5rem;
-            color: #9370DB; /* Tono de morado medio */
-        }
-        .header-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-        .logout-btn, .home-btn {
-            padding: 10px 20px;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .logout-btn {
-            background-color: #8A2BE2; /* Morado */
-        }
-        .logout-btn:hover {
-            background-color: #6a0dad; /* Morado más oscuro */
         }
         .home-btn {
             background: linear-gradient(135deg, rgba(138, 43, 226, 0.4), rgba(75, 0, 130, 0.4));
@@ -182,8 +151,11 @@ $email_usuario = $_SESSION['usuario']['email'] ?? 'Usuario';
             <p>Tu fuerza, nuestro compromiso</p>
         </div>
         <div class="header-buttons">
-            <a href="login.php?action=login" class="login-btn">Iniciar Sesión</a>
-            <a href="#" id="logout-btn" class="login-btn">Cerrar Sesión</a>
+            <a href="login.php?action=login" id="login-button" class="login-btn">Iniciar Sesión</a>
+            <div id="logged-in-section" style="display: none;">
+                <a href="#" id="logout-btn" class="login-btn">Cerrar Sesión</a>
+            </div>
+            <span id="welcome-message" style="display: none;"></span>
         </div>
         <div id="page-message" class="hidden"></div>
     </header>
@@ -206,5 +178,52 @@ $email_usuario = $_SESSION['usuario']['email'] ?? 'Usuario';
     <script src="js/script.js"></script>
     <script src="js/funciones.js"></script>
     <script src="js/reservas.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginButton = document.getElementById('login-button');
+            const loggedInSection = document.getElementById('logged-in-section');
+            const welcomeMessage = document.getElementById('welcome-message');
+            const logoutButton = document.getElementById('logout-btn');
+
+            // Ocultar ambos por defecto hasta que se determine el estado de la sesión
+            loginButton.style.display = 'none';
+            loggedInSection.style.display = 'none';
+
+            fetch('api/verificar_sesion.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.logueado) {
+                        welcomeMessage.textContent = `¡Hola ${data.email}, esperamos que disfrutes tu experiencia!`;
+                        loggedInSection.style.display = 'flex';
+                        loginButton.style.display = 'none';
+                        welcomeMessage.style.opacity = '1'; // Asegura que sea visible antes de desvanecerse
+
+                        // Ocultar el mensaje de bienvenida después de 5 segundos con fade out
+                        setTimeout(() => {
+                            welcomeMessage.style.opacity = '0';
+                            setTimeout(() => {
+                                welcomeMessage.style.display = 'none';
+                            }, 500); // Duración de la transición en CSS
+                        }, 5000); // 5000 milisegundos = 5 segundos
+                    } else {
+                        loginButton.style.display = 'block';
+                        loggedInSection.style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al verificar la sesión:', error);
+                    // En caso de error, mostrar el botón de iniciar sesión por defecto
+                    loginButton.style.display = 'block';
+                    loggedInSection.style.display = 'none';
+                });
+
+            // Manejar el clic del botón de cerrar sesión
+            logoutButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'logout.php?origen=reservas';
+            });
+        });
+    </script>
 </body>
 </html>
