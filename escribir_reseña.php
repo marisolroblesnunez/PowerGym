@@ -178,7 +178,9 @@ $mensaje_val = $_POST['mensaje'] ?? '';
         <div id="page-message" class="hidden"></div>
     </header>
     <div class="page-container">
-        <a href="testimonios.php" class="btn-volver">← Volver a Reseñas</a>
+        <div style="text-align: right;">
+            <a href="testimonios.php" class="btn-volver">← Volver a Reseñas</a>
+        </div>
         <div class="form-testimonio">
             <h2>¡Tu opinión nos importa mucho!</h2>
 
