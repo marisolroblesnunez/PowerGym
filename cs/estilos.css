@@ -65,6 +65,13 @@ body {
     background-clip: text;
     margin-bottom: 0.5rem;
     animation: logoGlow 2s ease-in-out infinite alternate;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.logo a:hover h1 {
+    animation: none; /* Pausa la animación de brillo */
+    text-shadow: 0 0 50px rgba(255, 255, 255, 0.8), 0 0 20px rgba(186, 85, 211, 0.9);
+    transform: scale(1.05);
 }
 
 .logo p {
