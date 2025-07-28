@@ -371,46 +371,6 @@ body {
     }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .header .logo h1 {
-        font-size: 2rem;
-    }
-    
-    .main-menu {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-    
-    .menu-item {
-        min-width: 200px;
-    }
-    
-    .circle-menu {
-        flex-direction: column;
-        gap: 2rem;
-    }
-    
-    .circle-item {
-        width: 120px;
-        height: 120px;
-    }
-    
-    .circle-item.single-circle {
-        width: 160px;
-        height: 160px;
-    }
-    
-    .welcome-message h2 {
-        font-size: 2rem;
-    }
-    
-    .submenu h3 {
-        font-size: 1.5rem;
-    }
-}
-
 /* Estilos para la sección de clases dinámicas */
 .clases-grid {
     display: grid;
@@ -543,12 +503,6 @@ body {
 
 .entrenador-contacto strong {
     color: #ffffff;
-}
-
-@media (max-width: 768px) {
-    .entrenadores-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* Estilos para el botón de reservar */
@@ -831,4 +785,95 @@ body {
 
 .verification-page-body .container {
     margin: auto; /* Centrado horizontal */
+}
+
+/* Nuevos estilos para la sección de usuario logueado */
+#logged-in-section {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: flex-end; /* Alinea los elementos a la derecha */
+    gap: 0.5rem; /* Espacio entre el botón y el mensaje */
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.2); /* Fondo sutil para el contenedor */
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(138, 43, 226, 0.5);
+}
+
+#welcome-message {
+    color: #e0e0e0; /* Un color ligeramente más claro para el mensaje */
+    font-size: 1rem;
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+    text-align: right; /* Alinea el texto a la derecha */
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Apila los elementos verticalmente */
+        padding: 1rem; /* Ajusta el padding */
+    }
+
+    .header .logo h1 {
+        font-size: 2rem;
+    }
+
+    .header-buttons {
+        position: static; /* Elimina el posicionamiento absoluto en móviles */
+        transform: none;
+        flex-direction: column; /* Apila los botones verticalmente */
+        width: 100%; /* Ocupa todo el ancho disponible */
+        margin-top: 1rem; /* Espacio entre el logo y los botones */
+    }
+
+    #logged-in-section {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 10px;
+        width: 100%; /* Asegura que ocupe todo el ancho */
+        align-items: center; /* Centra los elementos en móviles */
+    }
+
+    #welcome-message {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    
+    .main-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .menu-item {
+        min-width: 200px;
+    }
+    
+    .circle-menu {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .circle-item {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .circle-item.single-circle {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .welcome-message h2 {
+        font-size: 2rem;
+    }
+    
+    .submenu h3 {
+        font-size: 1.5rem;
+    }
+
+    .entrenadores-grid {
+        grid-template-columns: 1fr;
+    }
 }

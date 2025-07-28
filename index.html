@@ -29,8 +29,11 @@ directamente con la base de datos para recuperar los datos reales y enviarlos al
             <p>Tu fuerza, nuestro compromiso</p>
         </div>
         <div class="header-buttons">
-            <a href="login.php?action=login" class="login-btn">Iniciar Sesión</a>
-            <a href="#" id="logout-btn" class="login-btn">Cerrar Sesión</a>
+            <a href="login.php?action=login" id="login-button" class="login-btn">Iniciar Sesión</a>
+            <div id="logged-in-section" style="display: none;">
+                <a href="#" id="logout-btn" class="login-btn">Cerrar Sesión</a>
+                <span id="welcome-message"></span>
+            </div>
         </div>
         <div id="page-message" class="hidden"></div>
     </header>
@@ -181,3 +184,42 @@ directamente con la base de datos para recuperar los datos reales y enviarlos al
     <!-- Chatbot Scripts -->
     <script src="chatbot/js/funciones.js"></script>
     <script src="js/chatbot-integration.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginButton = document.getElementById('login-button');
+            const loggedInSection = document.getElementById('logged-in-section');
+            const welcomeMessage = document.getElementById('welcome-message');
+            const logoutButton = document.getElementById('logout-btn');
+
+            // Ocultar ambos por defecto hasta que se determine el estado de la sesión
+            loginButton.style.display = 'none';
+            loggedInSection.style.display = 'none';
+
+            fetch('api/verificar_sesion.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.logueado) {
+                        welcomeMessage.textContent = `¡Hola ${data.email}, esperamos que disfrutes tu experiencia!`;
+                        loggedInSection.style.display = 'flex'; // O 'block' o 'inline-block' según tu CSS
+                        loginButton.style.display = 'none';
+                    } else {
+                        loginButton.style.display = 'block'; // O 'inline-block' según tu CSS
+                        loggedInSection.style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al verificar la sesión:', error);
+                    // En caso de error, mostrar el botón de iniciar sesión por defecto
+                    loginButton.style.display = 'block';
+                    loggedInSection.style.display = 'none';
+                });
+
+            // Manejar el clic del botón de cerrar sesión
+            logoutButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'logout.php?origen=index';
+            });
+        });
+    </script>
+</body>
