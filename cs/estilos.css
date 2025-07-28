@@ -83,10 +83,11 @@ body {
 .header-buttons {
     position: absolute;
     top: 50%;
-    right: 2rem;
+    right: 4rem; /* Aumentar el espacio desde la derecha */
     transform: translateY(-50%);
     display: flex;
     gap: 1rem;
+    z-index: 10; /* Asegurar que esté por encima del logo si hay solapamiento */
 }
 
 .login-btn {
@@ -825,6 +826,7 @@ body {
         flex-direction: column; /* Apila los botones verticalmente */
         width: 100%; /* Ocupa todo el ancho disponible */
         margin-top: 1rem; /* Espacio entre el logo y los botones */
+        align-items: center; /* Centra los botones en móviles */
     }
 
     #logged-in-section {
