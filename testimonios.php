@@ -26,6 +26,7 @@ $is_logged_in = isset($_SESSION['usuario_id']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testimonios - PowerGym</title>
+    <link rel="stylesheet" href="cs/estilos.css">
     <style>
         /* === ESTILOS GENERALES === */
         body {
@@ -300,12 +301,18 @@ $is_logged_in = isset($_SESSION['usuario_id']);
 </head>
 <body>
     <div class="background-animation"></div>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>PowerGym</h1></a>
+            <p>Tu fuerza, nuestro compromiso</p>
+        </div>
+        <div class="header-buttons">
+            <a href="login.php?action=login" class="login-btn">Iniciar Sesión</a>
+            <a href="#" id="logout-btn" class="login-btn">Cerrar Sesión</a>
+        </div>
+        <div id="page-message" class="hidden"></div>
+    </header>
     <div class="page-container">
-        <header class="page-header">
-            <h1>Tu opinión es muy importante para nosotros! </h1>
-            <a href="index.html" class="btn-volver">← Volver a la App</a>
-        </header>
-
         <div class="reseñas-layout">
             <div class="reseñas-columna">
                 <h2>Conocé lo que piensan otros usuarios sobre nuestras instalaciones, clases y atención.</h2>
@@ -358,5 +365,7 @@ $is_logged_in = isset($_SESSION['usuario_id']);
             </div>
         </div>
     </div>
+    <script src="js/script.js"></script>
+    <script src="js/funciones.js"></script>
 </body>
 </html>

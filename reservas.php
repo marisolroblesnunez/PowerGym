@@ -178,7 +178,7 @@ $email_usuario = $_SESSION['usuario']['email'] ?? 'Usuario';
 
     <header class="header">
         <div class="logo">
-            <h1>PowerGym</h1>
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>PowerGym</h1></a>
             <p>Tu fuerza, nuestro compromiso</p>
         </div>
         <div class="header-buttons">
@@ -191,10 +191,7 @@ $email_usuario = $_SESSION['usuario']['email'] ?? 'Usuario';
     <div class="reservas-container">
         <div class="welcome-header">
             <h1>¡Bienvenido, Gracias por confiar en nosotros! <br>Cada entrenamiento cuenta. ¡Sigue así! <?php echo htmlspecialchars($email_usuario); ?>!</h1>
-            <div class="header-buttons">
-                <a href="index.html" class="home-btn">PowerGym</a>
-                <a href="logout.php" class="logout-btn">Cerrar Sesión</a>
-            </div>
+            
         </div>
         
         <h2>No pierdas la oportunidad. ¡Apúntate YA!</h2>
