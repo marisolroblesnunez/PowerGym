@@ -30,17 +30,14 @@ if (isset($_SESSION['logueado']) && $_SESSION['logueado'] === true && isset($_GE
     exit(); // Detener la ejecución del resto del script.
 }
 
-$url = '';//creo que seria index
-if(!isset($_GET['action'])){
-    //ir al index
-    header('index.html');
-}else{
+$url = "Location: index.html"; // Redirección por defecto a index.html
+if(isset($_GET['action'])){
     if($_GET['action'] == 'rese'){
         $url = "Location: escribir_reseña.php";
-    }
-    if($_GET['action'] == 'clases'){
+    } else if($_GET['action'] == 'clases'){
         $url = "Location: reservas.php";
     }
+    // Si la acción es 'login' o cualquier otra no reconocida, se mantendrá la redirección por defecto a index.html
 }
 // Si el usuario ya está logueado, redirigir a la página correcta según su tipo
 if(isset($_SESSION['logueado']) && $_SESSION['logueado'] == true){

@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['login'])){
             if (isset($_POST['action']) && $_POST['action'] == 'rese') {
                 $ruta = '../escribir_reseña.php';
             } else {
-                $ruta = '../reservas.php';
+                $ruta = '../index.html';
             }
         }
     }else{
