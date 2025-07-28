@@ -48,7 +48,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['login'])){
         } else { // Si es usuario normal (tipo 0)
             if (isset($_POST['action']) && $_POST['action'] == 'rese') {
                 $ruta = '../escribir_reseña.php';
-            } else {
+                } else if (isset($_POST['action']) && $_POST['action'] == 'clases') {
+                    $ruta = '../reservas.php';
+                } else {
                 $ruta = '../index.html';
             }
         }
