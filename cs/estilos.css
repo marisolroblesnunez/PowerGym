@@ -83,7 +83,7 @@ body {
 .header-buttons {
     position: absolute;
     top: 50%;
-    right: 4rem; /* Aumentar el espacio desde la derecha */
+    right: 2rem; /* Más cerca de la esquina derecha */
     transform: translateY(-50%);
     display: flex;
     gap: 1rem;
@@ -797,10 +797,6 @@ body {
     color: #ffffff;
     font-size: 1.1rem;
     font-weight: bold;
-    background: rgba(0, 0, 0, 0.2); /* Fondo sutil para el contenedor */
-    padding: 8px 15px;
-    border-radius: 8px;
-    border: 1px solid rgba(138, 43, 226, 0.5);
 }
 
 #welcome-message {
@@ -808,6 +804,7 @@ body {
     font-size: 1rem;
     white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
     text-align: right; /* Alinea el texto a la derecha */
+    transition: opacity 0.5s ease-out; /* Añadida transición para el fade out */
 }
 
 @media (max-width: 768px) {

@@ -201,8 +201,16 @@ directamente con la base de datos para recuperar los datos reales y enviarlos al
                 .then(data => {
                     if (data.logueado) {
                         welcomeMessage.textContent = `¡Hola ${data.email}, esperamos que disfrutes tu experiencia!`;
-                        loggedInSection.style.display = 'flex'; // O 'block' o 'inline-block' según tu CSS
+                        loggedInSection.style.display = 'flex';
                         loginButton.style.display = 'none';
+
+                        // Ocultar el mensaje de bienvenida después de 5 segundos con fade out
+                        setTimeout(() => {
+                            welcomeMessage.style.opacity = '0';
+                            setTimeout(() => {
+                                welcomeMessage.style.display = 'none';
+                            }, 500); // Duración de la transición en CSS
+                        }, 5000); // 5000 milisegundos = 5 segundos
                     } else {
                         loginButton.style.display = 'block'; // O 'inline-block' según tu CSS
                         loggedInSection.style.display = 'none';
