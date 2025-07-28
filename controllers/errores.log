@@ -1,0 +1,43 @@
+[28-Jul-2025 10:42:32 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'gimnasio.usuarios' doesn't exist in C:\wamp64\www\PowerGym\data\usuarioDB.php:80
+Stack trace:
+#0 C:\wamp64\www\PowerGym\data\usuarioDB.php(80): mysqli->prepare('SELECT * FROM u...')
+#1 C:\wamp64\www\PowerGym\data\usuarioDB.php(181): UsuarioDB->getByEmail('ff@gmail.com')
+#2 C:\wamp64\www\PowerGym\controllers\usuarioController.php(38): UsuarioDB->verificarCredenciales('ff@gmail.com', '11')
+#3 {main}
+  thrown in C:\wamp64\www\PowerGym\data\usuarioDB.php on line 80
+[28-Jul-2025 10:43:17 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'gimnasio.usuarios' doesn't exist in C:\wamp64\www\PowerGym\data\usuarioDB.php:80
+Stack trace:
+#0 C:\wamp64\www\PowerGym\data\usuarioDB.php(80): mysqli->prepare('SELECT * FROM u...')
+#1 C:\wamp64\www\PowerGym\data\usuarioDB.php(181): UsuarioDB->getByEmail('ff@gmail.com')
+#2 C:\wamp64\www\PowerGym\controllers\usuarioController.php(38): UsuarioDB->verificarCredenciales('ff@gmail.com', '11')
+#3 {main}
+  thrown in C:\wamp64\www\PowerGym\data\usuarioDB.php on line 80
+[28-Jul-2025 10:45:27 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'gimnasio.usuarios' doesn't exist in C:\wamp64\www\PowerGym\data\usuarioDB.php:80
+Stack trace:
+#0 C:\wamp64\www\PowerGym\data\usuarioDB.php(80): mysqli->prepare('SELECT * FROM u...')
+#1 C:\wamp64\www\PowerGym\data\usuarioDB.php(181): UsuarioDB->getByEmail('ff@gmail.com')
+#2 C:\wamp64\www\PowerGym\controllers\usuarioController.php(38): UsuarioDB->verificarCredenciales('ff@gmail.com', '11')
+#3 {main}
+  thrown in C:\wamp64\www\PowerGym\data\usuarioDB.php on line 80
+[28-Jul-2025 10:49:17 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'gimnasio.usuarios' doesn't exist in C:\wamp64\www\PowerGym\data\usuarioDB.php:80
+Stack trace:
+#0 C:\wamp64\www\PowerGym\data\usuarioDB.php(80): mysqli->prepare('SELECT * FROM u...')
+#1 C:\wamp64\www\PowerGym\data\usuarioDB.php(181): UsuarioDB->getByEmail('ff@gmail.com')
+#2 C:\wamp64\www\PowerGym\controllers\usuarioController.php(38): UsuarioDB->verificarCredenciales('ff@gmail.com', '11')
+#3 {main}
+  thrown in C:\wamp64\www\PowerGym\data\usuarioDB.php on line 80
+[28-Jul-2025 10:50:24 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'gimnasio' in C:\wamp64\www\PowerGym\config\database.php:25
+Stack trace:
+#0 C:\wamp64\www\PowerGym\config\database.php(25): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'gimnasio')
+#1 C:\wamp64\www\PowerGym\config\database.php(20): Database->connect()
+#2 C:\wamp64\www\PowerGym\controllers\usuarioController.php(10): Database->__construct()
+#3 {main}
+  thrown in C:\wamp64\www\PowerGym\config\database.php on line 25
+[28-Jul-2025 10:52:29 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'gimnasio' in C:\wamp64\www\PowerGym\config\database.php:25
+Stack trace:
+#0 C:\wamp64\www\PowerGym\config\database.php(25): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'gimnasio')
+#1 C:\wamp64\www\PowerGym\config\database.php(20): Database->connect()
+#2 C:\wamp64\www\PowerGym\controllers\usuarioController.php(10): Database->__construct()
+#3 {main}
+  thrown in C:\wamp64\www\PowerGym\config\database.php on line 25
+[28-Jul-2025 10:56:52 UTC] DEBUG: Intentando escribir en log: C:\wamp64\www\PowerGym\data/correos_simulados.log

@@ -1,5 +1,10 @@
 
 <?php
+    // Configuración de errores
+    ini_set('display_errors', 1); // No mostrar errores en pantalla
+    ini_set('log_errors', 1); // Habilitar el registro de errores
+    ini_set('error_log', 'errores.log'); // Guardar errores en un archivo llamado errores.log
+    error_reporting(E_ALL); // Reportar todos los errores
 /**
  * Se encarga de interactuar con la base de datos con la tabla libro hay que crear una clase por cada tabla en este caso solo tenemos una tabla entonces hacemos solo una clase, (clase libro db) para hacerle consultas a la base de datos.
  */
@@ -236,7 +241,7 @@ public function generarToken(){
             $row = $result->fetch_assoc();
             $user_id = $row['id'];
             
-            $update_sql = "UPDATE usuarios SET verificado = 1, token = NULL WHERE id= ?";
+            $update_sql = "UPDATE usuarios SET verificado = 1, token = '' WHERE id= ?";
             $update_stmt = $this->db->prepare($update_sql);
             $update_stmt->bind_param("i", $user_id);
 

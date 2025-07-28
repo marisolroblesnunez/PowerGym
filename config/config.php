@@ -36,4 +36,6 @@ if ($host === 'localhost' ||
     define('URL_ADMIN','http://www.alumnamarisol.com/PowerGym/admin');
     define('USAR_EMAIL_REAL', true); // En producción, enviamos correos de verdad
 }
+
+
 ?>

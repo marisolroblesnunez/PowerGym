@@ -1,0 +1,24 @@
+[28-Jul-2025 10:57:08 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Column 'token' cannot be null in C:\wamp64\www\PowerGym\data\usuarioDB.php:250
+Stack trace:
+#0 C:\wamp64\www\PowerGym\data\usuarioDB.php(250): mysqli_stmt->execute()
+#1 C:\wamp64\www\PowerGym\admin\verificar.php(15): UsuarioDB->verificarToken('5efc8a174ec4a89...')
+#2 {main}
+  thrown in C:\wamp64\www\PowerGym\data\usuarioDB.php on line 250
+[28-Jul-2025 10:57:09 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Column 'token' cannot be null in C:\wamp64\www\PowerGym\data\usuarioDB.php:250
+Stack trace:
+#0 C:\wamp64\www\PowerGym\data\usuarioDB.php(250): mysqli_stmt->execute()
+#1 C:\wamp64\www\PowerGym\admin\verificar.php(15): UsuarioDB->verificarToken('5efc8a174ec4a89...')
+#2 {main}
+  thrown in C:\wamp64\www\PowerGym\data\usuarioDB.php on line 250
+[28-Jul-2025 10:57:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Column 'token' cannot be null in C:\wamp64\www\PowerGym\data\usuarioDB.php:250
+Stack trace:
+#0 C:\wamp64\www\PowerGym\data\usuarioDB.php(250): mysqli_stmt->execute()
+#1 C:\wamp64\www\PowerGym\admin\verificar.php(15): UsuarioDB->verificarToken('5efc8a174ec4a89...')
+#2 {main}
+  thrown in C:\wamp64\www\PowerGym\data\usuarioDB.php on line 250
+[28-Jul-2025 10:57:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Column 'token' cannot be null in C:\wamp64\www\PowerGym\data\usuarioDB.php:250
+Stack trace:
+#0 C:\wamp64\www\PowerGym\data\usuarioDB.php(250): mysqli_stmt->execute()
+#1 C:\wamp64\www\PowerGym\admin\verificar.php(15): UsuarioDB->verificarToken('5efc8a174ec4a89...')
+#2 {main}
+  thrown in C:\wamp64\www\PowerGym\data\usuarioDB.php on line 250
