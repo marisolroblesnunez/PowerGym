@@ -41,3 +41,4 @@ Stack trace:
 #3 {main}
   thrown in C:\wamp64\www\PowerGym\config\database.php on line 25
 [28-Jul-2025 10:56:52 UTC] DEBUG: Intentando escribir en log: C:\wamp64\www\PowerGym\data/correos_simulados.log
+[29-Jul-2025 06:48:49 UTC] DEBUG: Intentando escribir en log: C:\wamp64\www\PowerGym\data/correos_simulados.log

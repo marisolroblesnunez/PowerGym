@@ -27,10 +27,10 @@ if ($host === 'localhost' ||
 
 } else {
     // --- CONFIGURACIÓN PARA PRODUCCIÓN (NUBE) ---
-    define('DB_HOST', 'db5018304787.hosting-data.io');
-    define('DB_USER', 'dbu5425553');
-    define('DB_PASS', '76065850Cc.');
-    define('DB_NAME', 'dbs14505994');
+    define('DB_HOST', 'db5018152583.hosting-data.io');
+    define('DB_USER', 'dbu1105751');
+    define('DB_PASS', '76065850');
+    define('DB_NAME', 'dbs14399129');
     // Usando un nombre de carpeta consistente.
     // ¡IMPORTANTE! Asegúrate de que la carpeta en tu servidor real se llame así.
     define('URL_ADMIN','http://www.alumnamarisol.com/PowerGym/admin');

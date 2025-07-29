@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 21-07-2025 a las 12:17:06
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 29-07-2025 a las 07:12:49
+-- Versión del servidor: 11.5.2-MariaDB
+-- Versión de PHP: 8.3.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,8 +27,9 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `clases`
 --
 
-CREATE TABLE `clases` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `clases`;
+CREATE TABLE IF NOT EXISTS `clases` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_entrenador` int(11) NOT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   `descripcion` text DEFAULT NULL,
@@ -36,8 +37,10 @@ CREATE TABLE `clases` (
   `hora` time DEFAULT NULL,
   `duracion_minutos` int(11) DEFAULT NULL,
   `cupo_maximo` int(11) DEFAULT NULL,
-  `imagen_url` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `imagen_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_entrenador` (`id_entrenador`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `clases`
@@ -56,13 +59,15 @@ INSERT INTO `clases` (`id`, `id_entrenador`, `nombre`, `descripcion`, `dia_seman
 -- Estructura de tabla para la tabla `entrenadores`
 --
 
-CREATE TABLE `entrenadores` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `entrenadores`;
+CREATE TABLE IF NOT EXISTS `entrenadores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   `especialidad` varchar(100) DEFAULT NULL,
   `email` varchar(150) DEFAULT NULL,
-  `foto_url` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `foto_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `entrenadores`
@@ -81,12 +86,17 @@ INSERT INTO `entrenadores` (`id`, `nombre`, `especialidad`, `email`, `foto_url`)
 -- Estructura de tabla para la tabla `inscripciones_clases`
 --
 
-CREATE TABLE `inscripciones_clases` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `inscripciones_clases`;
+CREATE TABLE IF NOT EXISTS `inscripciones_clases` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) DEFAULT NULL,
   `id_clase` int(11) DEFAULT NULL,
-  `fecha_inscripcion` date DEFAULT curdate()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `fecha_inscripcion` date DEFAULT curdate(),
+  PRIMARY KEY (`id`),
+  KEY `id_cliente` (`id_usuario`),
+  KEY `id_clase` (`id_clase`),
+  KEY `id_usuario` (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `inscripciones_clases`
@@ -109,7 +119,16 @@ INSERT INTO `inscripciones_clases` (`id`, `id_usuario`, `id_clase`, `fecha_inscr
 (14, 30, 9, '2025-07-21'),
 (15, 30, 12, '2025-07-21'),
 (16, 33, 9, '2025-07-21'),
-(17, 33, 11, '2025-07-21');
+(17, 33, 11, '2025-07-21'),
+(18, 35, 12, '2025-07-21'),
+(19, 35, 11, '2025-07-21'),
+(20, 36, 10, '2025-07-21'),
+(21, 36, 11, '2025-07-21'),
+(22, 36, 13, '2025-07-21'),
+(23, 37, 12, '2025-07-28'),
+(24, 37, 10, '2025-07-28'),
+(25, 37, 13, '2025-07-28'),
+(26, 38, 11, '2025-07-29');
 
 -- --------------------------------------------------------
 
@@ -117,13 +136,16 @@ INSERT INTO `inscripciones_clases` (`id`, `id_usuario`, `id_clase`, `fecha_inscr
 -- Estructura de tabla para la tabla `testimonios`
 --
 
-CREATE TABLE `testimonios` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `testimonios`;
+CREATE TABLE IF NOT EXISTS `testimonios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) DEFAULT NULL,
   `mensaje` text DEFAULT NULL,
   `fecha` date DEFAULT curdate(),
-  `visible` tinyint(1) DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `visible` tinyint(1) DEFAULT 1,
+  PRIMARY KEY (`id`),
+  KEY `id_usuario` (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `testimonios`
@@ -136,7 +158,8 @@ INSERT INTO `testimonios` (`id`, `id_usuario`, `mensaje`, `fecha`, `visible`) VA
 (6, 5, 'Muy buen trato y limpieza. Lo recomiendo.', '2025-07-18', 1),
 (7, 6, 'Las duchas están siempre limpias, y eso se agradece.', '2025-07-18', 1),
 (8, 7, 'Hay mucha gente en hora punta, pero los entrenadores son atentos.', '2025-07-18', 0),
-(9, 8, 'Me encantan las clases de spinning, son muy motivadoras.', '2025-07-18', 1);
+(9, 8, 'Me encantan las clases de spinning, son muy motivadoras.', '2025-07-18', 1),
+(10, 37, 'jhikljkmjlkljkljuk', '2025-07-28', 0);
 
 -- --------------------------------------------------------
 
@@ -144,8 +167,9 @@ INSERT INTO `testimonios` (`id`, `id_usuario`, `mensaje`, `fecha`, `visible`) VA
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
@@ -157,8 +181,10 @@ CREATE TABLE `usuarios` (
   `intentos_fallidos` int(11) NOT NULL,
   `bloqueado` tinyint(4) NOT NULL,
   `ultima_conexion` datetime DEFAULT NULL,
-  `tipo` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `tipo` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -195,81 +221,12 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `fecha_
 (30, '', '', 'turu@gmail.com', '$2y$10$XOKPVRM4Ir22lXpCNW6bm.iYzfgpiPJCyL6BZqAFLjwBX9nsA.UKK', '2025-07-21', '', '', 1, 0, 0, '2025-07-21 09:27:05', 0),
 (31, '', '', 'gorila@gmail.com', '$2y$10$GQ0qI.ee.rvHmkD/J5dCpu/RTWb4bHNp08xXBem0AOFOuB3pu1uBW', '2025-07-21', '', '', 1, 0, 0, NULL, 0),
 (32, '', '', 'oo@gmail.com', '$2y$10$1Eh9YxSxAh7gLO2B6Q69F.hJMo8YKGjYaIikvmaS6NE3oAlVF89XO', '2025-07-21', '', '', 1, 0, 0, '2025-07-21 10:51:14', 0),
-(33, '', '', 'una@gmail.com', '$2y$10$2GAKJwo.UfWg885eyBXEeOeDWYaJ0QcNkqf/rk7gK6xFXSDWt567O', '2025-07-21', '', '', 1, 0, 0, '2025-07-21 10:09:21', 0);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `clases`
---
-ALTER TABLE `clases`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_entrenador` (`id_entrenador`);
-
---
--- Indices de la tabla `entrenadores`
---
-ALTER TABLE `entrenadores`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `inscripciones_clases`
---
-ALTER TABLE `inscripciones_clases`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_cliente` (`id_usuario`),
-  ADD KEY `id_clase` (`id_clase`),
-  ADD KEY `id_usuario` (`id_usuario`);
-
---
--- Indices de la tabla `testimonios`
---
-ALTER TABLE `testimonios`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_usuario` (`id_usuario`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `clases`
---
-ALTER TABLE `clases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT de la tabla `entrenadores`
---
-ALTER TABLE `entrenadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `inscripciones_clases`
---
-ALTER TABLE `inscripciones_clases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT de la tabla `testimonios`
---
-ALTER TABLE `testimonios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+(33, '', '', 'una@gmail.com', '$2y$10$2GAKJwo.UfWg885eyBXEeOeDWYaJ0QcNkqf/rk7gK6xFXSDWt567O', '2025-07-21', '', '', 1, 0, 0, '2025-07-21 10:09:21', 0),
+(34, '', '', 'ave@gmail.com', '$2y$10$zq5YHv0IENjj7CiCkH2brOUEqFjBSxpkklPgzrK2tvTPLP9Vfn/V6', '2025-07-21', '', '', 1, 0, 0, NULL, 0),
+(35, '', '', 'aa@gmail.com', '$2y$10$aSMdpTpLSwtiL3kNtoBa1uL82Vm.sm8QXs2rFfmt8hoPdnz/qJk5S', '2025-07-21', '', '', 1, 0, 0, '2025-07-21 14:36:31', 0),
+(36, '', '', 'ccc@gmail.com', '$2y$10$097VjbW2gFcmfa2R.NBKpeN3eZWoQQqMdkrTAK.kd2x14c6JboutC', '2025-07-21', '', '', 1, 0, 0, '2025-07-21 14:21:30', 0),
+(37, '', '', 'aguillo@gmaill.com', '$2y$10$7SFa8HK38dAfGBbiDy6Ns.HWX.e.LlSoboYt7Rkz9R6.lYD2/HRsy', '2025-07-28', '', '', 1, 0, 0, '2025-07-28 14:30:19', 0),
+(38, '', '', 'lucia@gmail.com', '$2y$10$WHfxOmi6BpQWrkzBD5xTsOTGd5r/.xQP0t1K8Hs.znjDCadh7IXTG', '2025-07-29', '', '', 1, 0, 0, '2025-07-29 08:52:34', 0);
 
 --
 -- Restricciones para tablas volcadas
