@@ -1,4 +1,3 @@
-
 <?php
     // Configuración de errores
     ini_set('display_errors', 1); // No mostrar errores en pantalla
@@ -118,6 +117,7 @@ class UsuarioDB {
                 if (USAR_EMAIL_REAL) {
                     // En producción, envía correo real
                     $mensaje = Correo::enviarCorreo($email, "Cliente", "Verificación de cuenta", $mensaje_email);
+                    $mensaje = $this->enviarCorreoSimulado($email, "Verificación de cuenta", $mensaje_email);
                 } else {
                     // En local, usa el simulador
                     $mensaje = $this->enviarCorreoSimulado($email, "Verificación de cuenta", $mensaje_email);

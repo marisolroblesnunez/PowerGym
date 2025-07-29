@@ -3,7 +3,7 @@
 define('MAIL_HOST', 'smtp.ionos.es');
 define('MAIL_USER', 'info@aznaitin.es');
 define('MAIL_PASS', 'SanFermin$7_Marisol');
-define('DEBUG_MAIL', false); // En producción, siempre en false. Poner en true solo para depurar.
+define('DEBUG_MAIL', true); // En producción, siempre en false. Poner en true solo para depurar.
 
 // Detección automática del entorno (Local vs. Producción)
 $host = $_SERVER['HTTP_HOST'];
