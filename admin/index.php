@@ -6,11 +6,11 @@
 
 //todo comprobar si el usuario esta logueado y si no esta logueado lo mandamos a login
 
-if(session_status() == PHP_SESSION_NONE){ /////////////este if se escribe para poder leer las variables superglobales que hemos creado en la carpeta usuarioController.php
+if(session_status() == PHP_SESSION_NONE){ //este if se escribe para poder leer las variables superglobales que hemos creado en la carpeta usuarioController.php
     session_start();
 }
 
-///si no metes datos, redirigeme a login que es donde tengo el formulario////// o si no esta logueado, redirigelo tambien a login
+///si no metes datos, redirigeme a login que es donde tengo el formulario//o si no esta logueado, redirigelo tambien a login
 if(!isset($_SESSION['logueado']) || !$_SESSION['logueado'] || !isset($_SESSION['usuario']['tipo']) || $_SESSION['usuario']['tipo'] != 1){
   header("Location: ../login.php"); // Redirige al login general
   exit();
