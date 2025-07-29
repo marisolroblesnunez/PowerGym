@@ -1,103 +1,97 @@
 <?php
+// DATA/inscripcionclaseDB.php
+// Este archivo contiene la clase InscripcionClaseDB, que gestiona las interacciones con la tabla 'inscripciones_clases' en la base de datos.
+
 /**
- * Se encarga de interactuar con la base de datos con la tabla libro hay que crear una clase por cada tabla en este caso solo tenemos una tabla entonces hacemos solo una clase, (clase libro db) para hacerle consultas a la base de datos.
+ * Clase InscripcionClaseDB: Se encarga de interactuar con la base de datos para la tabla 'inscripciones_clases'.
+ * Proporciona métodos para realizar operaciones como insertar inscripciones, verificar si un usuario ya está inscrito,
+ * obtener inscripciones por usuario y eliminar inscripciones.
  */
 class InscripcionClaseDB {
 
-    private $db;
-    private $table = 'inscripciones_clases';
-    //recibe una conexión ($database) a una base de datos y la mete en $db
+    private $db; // Propiedad para almacenar la conexión a la base de datos.
+    private $table = 'inscripciones_clases'; // Nombre de la tabla de inscripciones de clases en la base de datos.
+
+    // Constructor: recibe un objeto de conexión a la base de datos y lo asigna a la propiedad $db.
     public function __construct($database){
         $this->db = $database->getConexion();
     }
 
-    //extrae todos los datos de la tabla $table
+    // Obtiene todos los registros de la tabla de inscripciones de clases.
     public  function getAll(){
-        //construye la consulta
-        $sql = "SELECT * FROM {$this->table}";
+        $sql = "SELECT * FROM {$this->table}"; // Prepara la consulta SQL para seleccionar todas las inscripciones.
+        $resultado = $this->db->query($sql); // Ejecuta la consulta.
 
-        //realiza la consulta con la función query()
-        $resultado = $this->db->query($sql);
-
-        //comprueba si hay respuesta ($resultado) y si la respuesta viene con datos
+        // Comprueba si la consulta fue exitosa y si devolvió filas.
         if($resultado && $resultado->num_rows > 0){
-            //crea un array para guardar los datos
-            $inscripciones = [];
-            //en cada vuelta obtengo un array asociativo con los datos de una fila y lo guardo en la variable $row
-            //cuando ya no quedan filas que recorrer termina el bucle
+            $inscripciones = []; // Inicializa un array para guardar las inscripciones.
+            // Itera sobre cada fila del resultado y la añade al array de inscripciones.
             while($row = $resultado->fetch_assoc()){
-                //al array libros le añado $row 
                 $inscripciones[] = $row;
             }
-            //devolvemos el resultado
-            return $inscripciones;
+            return $inscripciones; // Devuelve el array de inscripciones.
         }else{
-            //no hay datos, devolvemos un array vacío
-            return [];
+            return []; // Si no hay inscripciones, devuelve un array vacío.
         }
-        
     }
 
+    // Obtiene una inscripción específica por su ID.
     public function getById($id){
-        $sql = "SELECT * FROM {$this->table} WHERE id = ?";
-        $stmt = $this->db->prepare($sql);
+        $sql = "SELECT * FROM {$this->table} WHERE id = ?"; // Consulta SQL con un marcador de posición para el ID.
+        $stmt = $this->db->prepare($sql); // Prepara la consulta para evitar inyección SQL.
         if($stmt){
-            //añado un parámetro a la consulta
-            //este va en el lugar de la ? en la variable $sql
-            //"i" es para asegurarnos de que el parámetro es un número entero
-            $stmt->bind_param("i", $id);
-            //ejecuta la consulta
-            $stmt->execute();
-            //lee el resultado de la consulta
-            $result = $stmt->get_result();
+            $stmt->bind_param("i", $id); // Asocia el parámetro ID (como entero) a la consulta.
+            $stmt->execute(); // Ejecuta la consulta preparada.
+            $result = $stmt->get_result(); // Obtiene el resultado.
 
-            //comprueba si en el resultado hay datos o está vacío
+            // Comprueba si se encontró una inscripción.
             if($result->num_rows > 0){
-                //devuelve un array asociativo con los datos
-                return $result->fetch_assoc();
+                return $result->fetch_assoc(); // Devuelve los datos de la inscripción como un array asociativo.
             }
-            //cierra 
-            $stmt->close();
+            $stmt->close(); // Cierra la sentencia preparada.
         }
-        //algo falló
-        return null;
+        return null; // Si no se encuentra la inscripción o hay un error, devuelve null.
     }
+
+    // Inserta una nueva inscripción en la base de datos.
     public function insertarInscripcion($id_usuario, $id_clase) {
-        $sql = "INSERT INTO inscripciones_clases (id_usuario, id_clase, fecha_inscripcion) VALUES (?, ?, NOW())";
+        $sql = "INSERT INTO inscripciones_clases (id_usuario, id_clase, fecha_inscripcion) VALUES (?, ?, NOW())"; // Consulta SQL para insertar una inscripción.
         $stmt = $this->db->prepare($sql);
         if ($stmt) {
-            $stmt->bind_param("ii", $id_usuario, $id_clase);
-            $result = $stmt->execute();
+            $stmt->bind_param("ii", $id_usuario, $id_clase); // Asocia los IDs de usuario y clase (como enteros) a la consulta.
+            $result = $stmt->execute(); // Ejecuta la inserción.
             $stmt->close();
-            return $result;
+            return $result; // Devuelve true si la inserción fue exitosa, false en caso contrario.
         }
         return false;
     }
 
+    // Verifica si un usuario ya está inscrito en una clase específica.
     public function estaInscrito($id_usuario, $id_clase) {
-        $sql = "SELECT COUNT(*) FROM inscripciones_clases WHERE id_usuario = ? AND id_clase = ?";
+        $sql = "SELECT COUNT(*) AS count FROM inscripciones_clases WHERE id_usuario = ? AND id_clase = ?"; // Consulta para contar inscripciones.
         $stmt = $this->db->prepare($sql);
         if ($stmt) {
-            $stmt->bind_param("ii", $id_usuario, $id_clase);
+            $stmt->bind_param("ii", $id_usuario, $id_clase); // Asocia los IDs de usuario y clase.
             $stmt->execute();
-            $stmt->bind_result($count);
-            $stmt->fetch();
+            $result = $stmt->get_result(); // Obtiene el resultado de la consulta.
+            $row = $result->fetch_assoc(); // Obtiene la fila como un array asociativo.
             $stmt->close();
-            return $count > 0;
+            return $row['count'] > 0; // Devuelve true si el conteo es mayor que 0 (ya está inscrito), false en caso contrario.
         }
         return false;
     }
 
+    // Obtiene todas las inscripciones de un usuario específico, incluyendo detalles de la clase.
     public function getInscripcionesByUsuario($id_usuario) {
         $sql = "SELECT ic.*, c.nombre AS nombre_clase, c.dia_semana, c.hora
                 FROM inscripciones_clases ic
                 JOIN clases c ON ic.id_clase = c.id
                 WHERE ic.id_usuario = ?
-                ORDER BY c.dia_semana, c.hora";
+                ORDER BY c.dia_semana, c.hora"; // Consulta para obtener inscripciones con detalles de clase.
         $stmt = $this->db->prepare($sql);
         $inscripciones = [];
         if ($stmt) {
-            $stmt->bind_param("i", $id_usuario);
+            $stmt->bind_param("i", $id_usuario); // Asocia el ID de usuario.
             $stmt->execute();
             $result = $stmt->get_result();
             while ($row = $result->fetch_assoc()) {
@@ -105,17 +99,18 @@ class InscripcionClaseDB {
             }
             $stmt->close();
         }
-        return $inscripciones;
+        return $inscripciones; // Devuelve el array de inscripciones.
     }
 
+    // Elimina una inscripción específica por su ID.
     public function eliminarInscripcion($id_inscripcion) {
-        $sql = "DELETE FROM inscripciones_clases WHERE id = ?";
+        $sql = "DELETE FROM inscripciones_clases WHERE id = ?"; // Consulta SQL para eliminar una inscripción.
         $stmt = $this->db->prepare($sql);
         if ($stmt) {
-            $stmt->bind_param("i", $id_inscripcion);
-            $result = $stmt->execute();
+            $stmt->bind_param("i", $id_inscripcion); // Asocia el ID de la inscripción.
+            $result = $stmt->execute(); // Ejecuta la eliminación.
             $stmt->close();
-            return $result;
+            return $result; // Devuelve true si la eliminación fue exitosa, false en caso contrario.
         }
         return false;
     }

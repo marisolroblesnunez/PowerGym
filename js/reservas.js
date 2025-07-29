@@ -1,3 +1,12 @@
+/*
+* Este archivo maneja toda la lógica de la página de reservas de clases.
+* Sus responsabilidades incluyen:
+* - Cargar dinámicamente las clases disponibles desde una API.
+* - Mostrar las clases en tarjetas interactivas, indicando si el cupo está lleno o si el usuario ya está inscrito.
+* - Gestionar el proceso de reserva: envía la solicitud a la API cuando un usuario hace clic en "Reservar".
+* - Actualizar la interfaz de usuario en tiempo real después de una reserva exitosa (incrementa el contador de inscritos y deshabilita el botón) sin necesidad de recargar la página.
+* - Utiliza la librería GSAP para añadir animaciones visuales a las tarjetas y un efecto de confeti para una experiencia de usuario más atractiva.
+*/
 document.addEventListener('DOMContentLoaded', function() {
     const clasesContainer = document.getElementById('clases-container');
 

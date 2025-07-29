@@ -1,3 +1,10 @@
+/*
+* Este archivo gestiona la interactividad de las ventanas modales en la página de login.
+* Se encarga de:
+* - Abrir la modal de registro de nuevos usuarios.
+* - Abrir la modal de recuperación de contraseña.
+* - Cerrar las modales al hacer clic en el botón de cierre (X) o al hacer clic fuera del contenido de la modal.
+*/
 //crear referencias a las modales
 const modalRegistro = document.getElementById('modalRegistro');
 const modalRecuperar = document.getElementById('modalRecuperar');

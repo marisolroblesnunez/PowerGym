@@ -1,96 +1,64 @@
 <?php
 // DATA/claseDB.php
-// Funciones para consultar la base de datos relacionadas con clases
-/**
- * Se encarga de interactuar con la base de datos con la tabla libro hay que crear una clase por cada tabla en este caso solo tenemos una tabla entonces hacemos solo una clase, (clase libro db) para hacerle consultas a la base de datos.
- */
-class claseDB {
+// Este archivo contiene la clase ClaseDB, que se encarga de todas las interacciones con la tabla 'clases' en la base de datos.
 
-    private $db;
-    private $table = 'clases';
-    //recibe una conexión ($database) a una base de datos y la mete en $db
+/**
+ * Clase ClaseDB: Gestiona las operaciones de base de datos para la tabla 'clases'.
+ * Proporciona métodos para obtener, insertar, actualizar y eliminar clases, así como para
+ * obtener detalles adicionales como el número de inscritos y si un usuario está inscrito.
+ */
+class ClaseDB {
+
+    private $db; // Propiedad para almacenar la conexión a la base de datos.
+    private $table = 'clases'; // Nombre de la tabla de clases en la base de datos.
+
+    // Constructor: recibe un objeto de conexión a la base de datos y lo asigna a la propiedad $db.
     public function __construct($database){
         $this->db = $database->getConexion();
     }
 
-    //extrae todos los datos de la tabla $table
+    // Obtiene todos los registros de la tabla de clases.
     public  function getAll(){
-        //construye la consulta
-        $sql = "SELECT * FROM {$this->table}";
+        $sql = "SELECT * FROM {$this->table}"; // Prepara la consulta SQL para seleccionar todas las clases.
+        $resultado = $this->db->query($sql); // Ejecuta la consulta.
 
-        //realiza la consulta con la función query()
-        $resultado = $this->db->query($sql);
-
-        //comprueba si hay respuesta ($resultado) y si la respuesta viene con datos
+        // Comprueba si la consulta fue exitosa y si devolvió filas.
         if($resultado && $resultado->num_rows > 0){
-            //crea un array para guardar los datos
-            $clases = [];
-            //en cada vuelta obtengo un array asociativo con los datos de una fila y lo guardo en la variable $row
-            //cuando ya no quedan filas que recorrer termina el bucle
+            $clases = []; // Inicializa un array para guardar las clases.
+            // Itera sobre cada fila del resultado y la añade al array de clases.
             while($row = $resultado->fetch_assoc()){
-                //al array libros le añado $row 
                 $clases[] = $row;
             }
-            //devolvemos el resultado
-            return $clases;
+            return $clases; // Devuelve el array de clases.
         }else{
-            //no hay datos, devolvemos un array vacío
-            return [];
+            return []; // Si no hay clases, devuelve un array vacío.
         }
-        
     }
 
+    // Obtiene una clase específica por su ID.
     public function getById($id){
-        $sql = "SELECT * FROM {$this->table} WHERE id = ?";
-        $stmt = $this->db->prepare($sql);
+        $sql = "SELECT * FROM {$this->table} WHERE id = ?"; // Consulta SQL con un marcador de posición para el ID.
+        $stmt = $this->db->prepare($sql); // Prepara la consulta para evitar inyección SQL.
         if($stmt){
-            //añado un parámetro a la consulta
-            //este va en el lugar de la ? en la variable $sql
-            //"i" es para asegurarnos de que el parámetro es un número entero
-            $stmt->bind_param("i", $id);
-            //ejecuta la consulta
-            $stmt->execute();
-            //lee el resultado de la consulta
-            $result = $stmt->get_result();
+            $stmt->bind_param("i", $id); // Asocia el parámetro ID (como entero) a la consulta.
+            $stmt->execute(); // Ejecuta la consulta preparada.
+            $result = $stmt->get_result(); // Obtiene el resultado.
 
-            //comprueba si en el resultado hay datos o está vacío
+            // Comprueba si se encontró una clase.
             if($result->num_rows > 0){
-                //devuelve un array asociativo con los datos
-                return $result->fetch_assoc();
+                return $result->fetch_assoc(); // Devuelve los datos de la clase como un array asociativo.
             }
-            //cierra 
-            $stmt->close();
+            $stmt->close(); // Cierra la sentencia preparada.
         }
-        //algo falló
-        return null;
+        return null; // Si no se encuentra la clase o hay un error, devuelve null.
     }
 
-
-    
-   /////////////////ESTO NO SE SI PONERLO AQUI?????
-    // Devuelve un array asociativo con los datos de la clase o null si no se encuentra
-    // Parámetros:
-    // - $nombre: el nombre de la clase a buscar
-    // Retorna:
-    // - Un array asociativo con los datos de la clase si se encuentra, o null si no se encuentra
-    // Ejemplo de uso:
-    // $database = new Database();
-    // $ClaseDB = new claseDB($database);
-    //  $clase = $claseDB->getByName('Yoga');
-    // if ($clase) {
-    //  echo "Clase encontrada: " . $clase['nombre'];
-    //  } else {
-    //      echo "Clase no encontrada.";
-    // }
-
-
- // Obtiene una clase por su nombre
-
-    function getByName($nombre) {
-        $sql = "SELECT * FROM {$this->table} WHERE nombre = ?";
+    // Obtiene una clase por su nombre.
+    public function getByName($nombre) {
+        $sql = "SELECT * FROM {$this->table} WHERE nombre = ?"; // Consulta SQL con marcador para el nombre.
         $stmt = $this->db->prepare($sql);
         if ($stmt) {
-            $stmt->bind_param("s", $nombre);
+            $stmt->bind_param("s", $nombre); // Asocia el nombre (como string) al parámetro.
             $stmt->execute();
             $result = $stmt->get_result();
             if ($result->num_rows > 0) {
@@ -101,44 +69,50 @@ class claseDB {
         return null;
     }
 
+    // Inserta una nueva clase en la base de datos.
     public function insertarClase($nombre, $descripcion, $dia_semana, $hora, $duracion_minutos, $cupo_maximo, $id_entrenador) {
         $sql = "INSERT INTO clases (nombre, descripcion, dia_semana, hora, duracion_minutos, cupo_maximo, id_entrenador) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         if ($stmt) {
+            // Asocia los parámetros a la consulta (s: string, i: integer).
             $stmt->bind_param("sssssii", $nombre, $descripcion, $dia_semana, $hora, $duracion_minutos, $cupo_maximo, $id_entrenador);
-            $result = $stmt->execute();
+            $result = $stmt->execute(); // Ejecuta la inserción.
             $stmt->close();
-            return $result;
+            return $result; // Devuelve true si la inserción fue exitosa, false en caso contrario.
         }
         return false;
     }
 
+    // Actualiza los datos de una clase existente.
     public function actualizarClase($id, $nombre, $descripcion, $dia_semana, $hora, $duracion_minutos, $cupo_maximo, $id_entrenador) {
         $sql = "UPDATE clases SET nombre = ?, descripcion = ?, dia_semana = ?, hora = ?, duracion_minutos = ?, cupo_maximo = ?, id_entrenador = ? WHERE id = ?";
         $stmt = $this->db->prepare($sql);
         if ($stmt) {
+            // Asocia los parámetros a la consulta de actualización.
             $stmt->bind_param("sssssiii", $nombre, $descripcion, $dia_semana, $hora, $duracion_minutos, $cupo_maximo, $id_entrenador, $id);
-            $result = $stmt->execute();
+            $result = $stmt->execute(); // Ejecuta la actualización.
             $stmt->close();
-            return $result;
+            return $result; // Devuelve true si la actualización fue exitosa, false en caso contrario.
         }
         return false;
     }
 
+    // Elimina una clase de la base de datos.
     public function eliminarClase($id) {
-        $sql = "DELETE FROM clases WHERE id = ?";
+        $sql = "DELETE FROM clases WHERE id = ?"; // Consulta SQL para eliminar por ID.
         $stmt = $this->db->prepare($sql);
         if ($stmt) {
-            $stmt->bind_param("i", $id);
-            $result = $stmt->execute();
+            $stmt->bind_param("i", $id); // Asocia el ID al parámetro.
+            $result = $stmt->execute(); // Ejecuta la eliminación.
             $stmt->close();
-            return $result;
+            return $result; // Devuelve true si la eliminación fue exitosa, false en caso contrario.
         }
         return false;
     }
 
+    // Obtiene todas las clases con detalles adicionales como el nombre del entrenador, el número de inscritos
+    // y si un usuario específico está inscrito en cada clase.
     public function getAllClasesWithDetails($id_usuario = null) {
-        // El CASE se asegura de que si no hay id_usuario, el campo siempre sea 0.
         $sql = "SELECT 
                     c.*, 
                     e.nombre AS nombre_entrenador, 
@@ -157,7 +131,7 @@ class claseDB {
         $clases = [];
 
         if ($stmt) {
-            // Se bindea el id_usuario dos veces, una para el CASE y otra para el EXISTS.
+            // Bindea el id_usuario dos veces: una para el CASE (comprobación de NULL) y otra para la subconsulta EXISTS.
             $stmt->bind_param("ii", $id_usuario, $id_usuario);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -171,6 +145,7 @@ class claseDB {
         return $clases;
     }
 
+    // Obtiene las clases para un día de la semana específico, incluyendo detalles del entrenador y estado de inscripción del usuario.
     public function getClasesByDia($dia_semana, $id_usuario = null) {
         $sql = "SELECT 
                     c.*, 
@@ -190,7 +165,7 @@ class claseDB {
         $stmt = $this->db->prepare($sql);
         $clases = [];
         if ($stmt) {
-            // Bindeamos los tres parámetros: id_usuario, id_usuario, dia_semana
+            // Bindea los tres parámetros: id_usuario (dos veces) y dia_semana.
             $stmt->bind_param("iis", $id_usuario, $id_usuario, $dia_semana);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -202,6 +177,7 @@ class claseDB {
         return $clases;
     }
 
+    // Obtiene el número actual de inscritos para una clase específica.
     public function getInscritosCount($id_clase) {
         $sql = "SELECT COUNT(*) AS count FROM inscripciones_clases WHERE id_clase = ?";
         $stmt = $this->db->prepare($sql);
@@ -211,9 +187,9 @@ class claseDB {
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
             $stmt->close();
-            return $row['count'];
+            return $row['count']; // Devuelve el conteo de inscritos.
         }
-        return 0;
+        return 0; // Si hay un error o no hay inscritos, devuelve 0.
     }
 
 }

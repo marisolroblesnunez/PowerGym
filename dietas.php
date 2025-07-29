@@ -1,3 +1,17 @@
+<?php
+/*
+ * Este archivo representa la página de "Dietas" del sitio web PowerGym.
+ * Es una página principalmente informativa que presenta un plan de dieta saludable para toda la semana, dividido por días (Lunes a Domingo).
+ *
+ * Características principales:
+ * - Contenido Estático: Muestra un menú de comidas (desayuno, almuerzo, cena) para cada día.
+ * - Estructura HTML y CSS: Define la estructura y el estilo visual de la página, utilizando un diseño oscuro y centrado para facilitar la lectura.
+ * - Verificación de Sesión (JavaScript): Incluye un script que se comunica con una API (`api/verificar_sesion.php`) para determinar si el usuario ha iniciado sesión.
+ *   - Si el usuario está logueado, muestra un mensaje de bienvenida personalizado y un botón para cerrar sesión.
+ *   - Si no está logueado, muestra el botón para iniciar sesión.
+ * - Navegación: Contiene un botón para volver a la página de inicio.
+ */
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

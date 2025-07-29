@@ -1,5 +1,6 @@
 <?php
-// Este archivo es el panel de control principal para la administración del gimnasio.
+// Este archivo es el panel de control principal para la administración del gimnasio futura.
+//Actualmente muestra información de libros de una biblioteca, pero lo he dejado como ejemplo, para poder adaptaarlo a la funcionalidad del adiministrador del gimnasio.
 // Permite a los usuarios autenticados gestionar diversas funcionalidades, como la creación de nuevos elementos (actualmente "libros", que podría ser un placeholder para clases, entrenadores, etc.),
 // y muestra información relevante en tablas dinámicas.
 // También se encarga de la verificación de sesión para asegurar que solo los administradores puedan acceder.

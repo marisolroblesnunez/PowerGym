@@ -1,3 +1,8 @@
+/*
+* Este archivo se encarga de la interactividad del widget del chatbot.
+* Su principal función es mostrar u ocultar el contenedor del chatbot
+* cuando el usuario hace clic en la burbuja flotante.
+*/
 document.addEventListener('DOMContentLoaded', () => {
     const chatbotBubble = document.getElementById('chatbot-bubble');
     const chatbotContainer = document.getElementById('chatbot-widget-container');

@@ -1,3 +1,11 @@
+/*
+* Este archivo contiene funciones JavaScript de propósito general utilizadas en varias partes del sitio.
+* - showMessage: Muestra notificaciones emergentes (éxito, error) en la página.
+* - Manejo del Logout: Verifica si el usuario tiene una sesión activa antes de redirigir al script de logout,
+* previniendo errores y mostrando un mensaje si no hay sesión iniciada.
+* - Mensaje de Logout Exitoso: Muestra un mensaje de confirmación cuando el usuario es redirigido
+* a la página principal después de cerrar sesión.
+*/
 document.addEventListener('DOMContentLoaded', function() {
     const logoutBtn = document.getElementById('logout-btn');
     const messageContainer = document.getElementById('page-message');

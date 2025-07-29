@@ -1,22 +1,33 @@
 <?php
-session_start();
+/*
+ * Página para que los usuarios autenticados escriban y envíen reseñas.
+ */
+session_start(); // Inicia o reanuda la sesión para gestionar el estado del usuario.
+
+// Incluye el controlador que maneja la lógica de los testimonios.
 require_once __DIR__ . '/controllers/testimonioController.php';
 
+// Crea una instancia del controlador de testimonios.
 $testimonioController = new TestimonioController();
 
-// Redirigir si el usuario no está logueado
+// Redirige al login si el usuario no ha iniciado sesión.
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
-    exit();
+    exit(); // Detiene la ejecución del script.
 }
 
-$resultado_envio = [];
+$resultado_envio = []; // Inicializa el array para el resultado del envío.
+// Comprueba si el formulario ha sido enviado usando el método POST.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Procesa el envío del testimonio a través del controlador.
     $resultado_envio = $testimonioController->procesarEnvioTestimonio();
 }
+// Obtiene los errores del resultado, si los hay.
 $errores_envio = $resultado_envio['errores'] ?? [];
+// Obtiene el mensaje de éxito, si lo hay.
 $mensaje_exito_envio = $resultado_envio['mensaje_exito'] ?? '';
 
+// Recupera el valor del mensaje enviado para volver a mostrarlo en el textarea si hay un error.
 $mensaje_val = $_POST['mensaje'] ?? '';
 
 ?>
@@ -187,7 +198,7 @@ $mensaje_val = $_POST['mensaje'] ?? '';
         <div class="form-testimonio">
             <h2>¡Tu opinión nos importa mucho!</h2>
 
-            <?php if (!empty($errores_envio)): ?>
+            <?php if (!empty($errores_envio)): // Si hay errores, los muestra en una lista. ?>
                 <ul class="error-list">
                     <?php foreach ($errores_envio as $error): ?>
                         <li><?php echo htmlspecialchars($error); ?></li>
@@ -195,13 +206,14 @@ $mensaje_val = $_POST['mensaje'] ?? '';
                 </ul>
             <?php endif; ?>
 
-            <?php if ($mensaje_exito_envio): ?>
+            <?php if ($mensaje_exito_envio): // Si el envío fue exitoso, muestra el mensaje de confirmación. ?>
                 <p class="success-message"><?php echo htmlspecialchars($mensaje_exito_envio); ?></p>
             <?php endif; ?>
 
             <form action="escribir_reseña.php" method="POST">
                 <div class="form-group">
                     <label for="mensaje">Tu Mensaje:</label>
+                    <!-- El textarea muestra el mensaje anterior si hubo un error, para que el usuario no lo pierda. -->
                     <textarea id="mensaje" name="mensaje" required><?php echo htmlspecialchars($mensaje_val); ?></textarea>
                 </div>
                 <div class="form-group">
@@ -214,6 +226,12 @@ $mensaje_val = $_POST['mensaje'] ?? '';
     <script src="js/funciones.js"></script>
 
     <script>
+        /*
+         * Este script gestiona la visualización dinámica del encabezado.
+         * Comprueba si el usuario ha iniciado sesión a través de una llamada a la API.
+         * - Si está logueado, muestra un mensaje de bienvenida y el botón de "Cerrar Sesión".
+         * - Si no lo está, muestra el botón de "Iniciar Sesión".
+         */
         document.addEventListener('DOMContentLoaded', function() {
             const loginButton = document.getElementById('login-button');
             const loggedInSection = document.getElementById('logged-in-section');

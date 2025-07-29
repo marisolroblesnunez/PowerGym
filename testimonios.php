@@ -1,23 +1,31 @@
 <?php
-session_start();
-require_once __DIR__ . '/controllers/testimonioController.php';
+/*
+ * Esta página muestra los testimonios públicos y permite a los usuarios enviar los suyos.
+ */
+session_start(); // Inicia o reanuda la sesión para gestionar el estado del usuario.
+require_once __DIR__ . '/controllers/testimonioController.php'; // Incluye el controlador que maneja la lógica de los testimonios.
 
-$testimonioController = new TestimonioController();
+$testimonioController = new TestimonioController(); // Crea una instancia del controlador.
 
-// Procesar el envío del formulario si es un método POST
+// Inicializa un array para almacenar el resultado del envío del formulario.
 $resultado_envio = [];
+// Comprueba si la página fue cargada a través de un método POST, lo que indica un envío de formulario.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Llama al controlador para procesar los datos del formulario.
     $resultado_envio = $testimonioController->procesarEnvioTestimonio();
 }
+// Extrae los errores del resultado, si existen. El operador '??' previene errores si la clave no existe.
 $errores_envio = $resultado_envio['errores'] ?? [];
+// Extrae el mensaje de éxito, si existe.
 $mensaje_exito_envio = $resultado_envio['mensaje_exito'] ?? '';
 
-// Obtener los testimonios visibles para mostrar
+// Obtiene todos los testimonios que han sido aprobados como visibles para mostrarlos en la página.
 $testimonios_visibles = $testimonioController->obtenerTestimoniosParaWeb();
 
-// Para mantener el valor en el formulario después de un error
+// Guarda el texto del mensaje enviado por el usuario. Si el formulario se recarga por un error, el texto no se pierde.
 $mensaje_val = $_POST['mensaje'] ?? '';
-$is_logged_in = isset($_SESSION['usuario_id']);
+// Verifica si existe un ID de usuario en la sesión para determinar si el usuario está logueado.
+$is_logged_in = isset($_SESSION['user_id']);
 
 ?>
 <!DOCTYPE html>
@@ -289,13 +297,15 @@ $is_logged_in = isset($_SESSION['usuario_id']);
         <div class="reseñas-layout">
             <div class="reseñas-columna">
                 <h2>Conocé lo que piensan otros usuarios sobre nuestras instalaciones, clases y atención.</h2>
-                <?php if (empty($testimonios_visibles)): ?>
+                <?php if (empty($testimonios_visibles)): // Comprueba si hay testimonios para mostrar. ?>
                     <p style="color: white;">Aún no hay reseñas publicadas. ¡Sé el primero en dejar una!</p>
-                <?php else: ?>
+                <?php else: // Si hay testimonios, los recorre y muestra cada uno. ?>
                     <div class="testimonios-grid">
                         <?php foreach ($testimonios_visibles as $testimonio): ?>
                             <div class="testimonio-card">
+                                <!-- Muestra el mensaje del testimonio, usando htmlspecialchars para prevenir ataques XSS. -->
                                 <p>"<?php echo htmlspecialchars($testimonio['mensaje']); ?>"</p>
+                                <!-- Muestra el nombre del autor. Si no hay nombre, muestra 'Anónimo'. -->
                                 <div class="autor">- <?php echo htmlspecialchars($testimonio['nombre_usuario'] ?? 'Anónimo'); ?></div>
                             </div>
                         <?php endforeach; ?>
@@ -307,7 +317,7 @@ $is_logged_in = isset($_SESSION['usuario_id']);
                 <div class="form-testimonio">
                     <h2>¿Ya entrenas con nosotros? ¡Cuentanos tu experiencia!</h2>
 
-                    <?php if (!empty($errores_envio)): ?>
+                    <?php if (!empty($errores_envio)): // Si hubo errores en el envío, los muestra. ?>
                         <ul class="error-list">
                             <?php foreach ($errores_envio as $error): ?>
                                 <li><?php echo htmlspecialchars($error); ?></li>
@@ -315,11 +325,12 @@ $is_logged_in = isset($_SESSION['usuario_id']);
                         </ul>
                     <?php endif; ?>
 
-                    <?php if ($mensaje_exito_envio): ?>
+                    <?php if ($mensaje_exito_envio): // Si el envío fue exitoso, muestra un mensaje de confirmación. ?>
                         <p class="success-message"><?php echo htmlspecialchars($mensaje_exito_envio); ?></p>
                     <?php endif; ?>
 
-                    <?php if ($is_logged_in): ?>
+                    <?php if ($is_logged_in): // Comprueba si el usuario ha iniciado sesión. ?>
+                        <!-- Si el usuario está logueado, muestra el formulario para enviar un testimonio. -->
                         <form action="testimonios.php" method="POST">
                             <div class="form-group">
                                 <label for="mensaje">Tu Mensaje:</label>
@@ -330,6 +341,7 @@ $is_logged_in = isset($_SESSION['usuario_id']);
                             </div>
                         </form>
                     <?php else: ?>
+                        <!-- Si el usuario no está logueado, muestra un mensaje pidiéndole que inicie sesión. -->
                         <div class="login-prompt">
                             <a href="login.php?action=rese">Escribe aquí tu reseña</a><p>Necesitas registrarte para poder compartirla</p>
                         </div>
@@ -342,6 +354,12 @@ $is_logged_in = isset($_SESSION['usuario_id']);
     <script src="js/funciones.js"></script>
 
     <script>
+        /*
+         * Este script gestiona la visualización dinámica del encabezado.
+         * Comprueba si el usuario ha iniciado sesión a través de una llamada a la API.
+         * - Si está logueado, muestra un mensaje de bienvenida y el botón de "Cerrar Sesión".
+         * - Si no lo está, muestra el botón de "Iniciar Sesión".
+         */
         document.addEventListener('DOMContentLoaded', function() {
             const loginButton = document.getElementById('login-button');
             const loggedInSection = document.getElementById('logged-in-section');

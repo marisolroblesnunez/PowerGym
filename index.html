@@ -10,35 +10,44 @@ se obtiene de la base de datos. Esto se logra a través de scripts JavaScript qu
 ubicados en la carpeta `api/` (específicamente `api/index.php`) y otros controladores PHP. Estos scripts PHP son los que interactúan
 directamente con la base de datos para recuperar los datos reales y enviarlos al navegador para su visualización.
 -->
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html> <!-- Define el tipo de documento como HTML5 -->
+<html lang="es"> <!-- El idioma principal del documento es español -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PowerGym - Tu Gimnasio</title>
-    <link rel="stylesheet" href="cs/estilos.css">
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Asegura que la página se vea bien en todos los dispositivos -->
+    <title>PowerGym - Tu Gimnasio</title> <!-- Título de la página que aparece en la pestaña del navegador -->
+    <link rel="stylesheet" href="cs/estilos.css"> <!-- Enlaza la hoja de estilos principal -->
     <!-- Chatbot CSS -->
-    <link rel="stylesheet" href="chatbot/css/estilos.css">
+    <link rel="stylesheet" href="chatbot/css/estilos.css"> <!-- Enlaza la hoja de estilos específica para el chatbot -->
 </head>
 <body>
+    <!-- Contenedor para la animación de fondo -->
     <div class="background-animation"></div>
     
+    <!-- Cabecera de la página -->
     <header class="header">
+        <!-- Sección del logo -->
         <div class="logo">
             <h1>PowerGym</h1>
             <p>Tu fuerza, nuestro compromiso</p>
         </div>
+        <!-- Botones de la cabecera para iniciar/cerrar sesión -->
         <div class="header-buttons">
+            <!-- Botón para iniciar sesión, visible para usuarios no autenticados -->
             <a href="login.php?action=login" id="login-button" class="login-btn">Iniciar Sesión</a>
+            <!-- Sección para usuarios autenticados, oculta por defecto -->
             <div id="logged-in-section" style="display: none;">
                 <a href="#" id="logout-btn" class="login-btn">Cerrar Sesión</a>
-                <span id="welcome-message"></span>
+                <span id="welcome-message"></span> <!-- Mensaje de bienvenida para el usuario -->
             </div>
         </div>
+        <!-- Contenedor para mostrar mensajes generales en la página -->
         <div id="page-message" class="hidden"></div>
     </header>
 
+    <!-- Contenido principal de la página -->
     <main class="main-container">
+        <!-- Menú de navegación principal -->
         <nav class="main-menu">
             <button class="menu-item" id="mi-fitness">
                 <div class="menu-icon">💪</div>
@@ -54,13 +63,15 @@ directamente con la base de datos para recuperar los datos reales y enviarlos al
             </button>
         </nav>
 
+        <!-- Área donde se muestra el contenido principal y los submenús -->
         <section class="content-area">
+            <!-- Mensaje de bienvenida inicial -->
             <div class="welcome-message">
                 <h2>Bienvenido a PowerGym</h2>
                 <p>Selecciona una opción del menú para comenzar</p>
             </div>
 
-            <!-- Mi Fitness Content -->
+            <!-- Submenú para "Mi Fitness", oculto por defecto -->
             <div class="submenu hidden" id="fitness-submenu">
                 <h3>Mi Fitness</h3>
                 <div class="circle-menu">
@@ -79,7 +90,7 @@ directamente con la base de datos para recuperar los datos reales y enviarlos al
                 </div>
             </div>
 
-            <!-- Mi Actividad Content -->
+            <!-- Submenú para "Mi Actividad", oculto por defecto -->
             <div class="submenu hidden" id="actividad-submenu">
                 <h3>Mi Actividad</h3>
                 <div class="circle-menu">
@@ -90,7 +101,7 @@ directamente con la base de datos para recuperar los datos reales y enviarlos al
                 </div>
             </div>
 
-            <!-- Más Content -->
+            <!-- Submenú para "Más", oculto por defecto -->
             <div class="submenu hidden" id="mas-submenu">
                 <h3>Más Opciones</h3>
                 <div class="circle-menu">
@@ -108,20 +119,25 @@ directamente con la base de datos para recuperar los datos reales y enviarlos al
                     </a>
                 </div>
             </div>
-        <!-- Contenido Dinámico (Oculto por defecto) -->
+            
+            <!-- Contenedor para el contenido que se carga dinámicamente (clases, reseñas, etc.) -->
             <div id="dynamic-content" class="hidden">
+                <!-- Sección para mostrar las clases -->
                 <div id="clases-content" class="dynamic-section hidden">
                     <h3>Nuestras Clases</h3>
                     <p>Aquí se mostrará la información de las clases.</p>
                 </div>
+                <!-- Sección para mostrar las reseñas -->
                 <div id="reseñas-content" class="dynamic-section hidden">
                     <h3>Reseñas de Clientes</h3>
                     <p>Aquí se mostrarán las reseñas.</p>
                 </div>
+                <!-- Sección para mostrar los entrenadores -->
                 <div id="entrenadores-content" class="dynamic-section hidden">
                     <h3>Nuestros Entrenadores</h3>
                     <p>Aquí se mostrará la información de los entrenadores.</p>
                 </div>
+                <!-- Sección para realizar reservas -->
                 <div id="reservas-content" class="dynamic-section hidden">
                     <h3>Reserva tu Clase</h3>
                     <p>Aquí podrás ver las clases disponibles y reservar tu cupo.</p>
@@ -129,34 +145,42 @@ directamente con la base de datos para recuperar los datos reales y enviarlos al
             </div>
         </section>
 
+        <!-- Botón para volver al menú anterior, oculto por defecto -->
         <button class="back-button hidden" id="back-button">
             <span>← Volver</span>
         </button>
     </main>
 
+    <!-- Pie de página -->
     <footer class="footer">
         <p>&copy; 2024 PowerGym. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Chatbot Widget -->
+    <!-- Widget del Chatbot -->
+    <!-- Burbuja flotante para abrir el chatbot -->
     <div id="chatbot-bubble">
         <span>💬</span>
     </div>
 
+    <!-- Contenedor principal del widget del chatbot, oculto por defecto -->
     <div id="chatbot-widget-container" class="hidden">
         <div class="chat-container">
+            <!-- Cabecera del chat -->
             <div class="chat-header">
                 <div class="bot-avatar">🤖</div>
                 <h3>Asistente Virtual</h3>
                 <div class="bot-status">En línea • Responde en segundos</div>
             </div>
 
+            <!-- Área de mensajes del chat -->
             <div class="chat-messages" id="chatMessages">
+                <!-- Mensaje inicial del bot -->
                 <div class="message bot">
                     <div class="message-bubble">
                         ¡Hola! Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?
                     </div>
                 </div>
+                <!-- Respuestas rápidas para el usuario -->
                 <div class="quick-responses">
                     <div class="quick-response" onclick="sendQuickMessage('¿Qué servicios ofrecen?')">Servicios</div>
                     <div class="quick-response" onclick="sendQuickMessage('¿Cuáles son sus horarios?')">Horarios</div>
@@ -164,6 +188,7 @@ directamente con la base de datos para recuperar los datos reales y enviarlos al
                 </div>
             </div>
 
+            <!-- Indicador de que el bot está escribiendo -->
             <div class="typing-indicator" id="typingIndicator">
                 <div class="typing-dots">
                     <span></span>
@@ -172,6 +197,7 @@ directamente con la base de datos para recuperar los datos reales y enviarlos al
                 </div>
             </div>
 
+            <!-- Entrada de texto para que el usuario escriba su mensaje -->
             <div class="chat-input-container">
                 <div class="input-group">
                     <input type="text" id="chatInput" placeholder="Escribe tu mensaje aquí..." maxlength="500">
@@ -181,55 +207,63 @@ directamente con la base de datos para recuperar los datos reales y enviarlos al
         </div>
     </div>
 
-    <script src="js/script.js"></script>
-    <script src="js/funciones.js"></script>
+    <!-- Scripts de JavaScript -->
+    <script src="js/script.js"></script> <!-- Script para la funcionalidad general de la interfaz (menús, etc.) -->
+    <script src="js/funciones.js"></script> <!-- Script con funciones auxiliares o adicionales -->
     <!-- Chatbot Scripts -->
-    <script src="chatbot/js/funciones.js"></script>
-    <script src="js/chatbot-integration.js"></script>
+    <script src="chatbot/js/funciones.js"></script> <!-- Script para la lógica interna del chatbot -->
+    <script src="js/chatbot-integration.js"></script> <!-- Script para integrar el chatbot con la página principal -->
 
+    <!-- Script en línea para manejar el estado de la sesión del usuario -->
     <script>
+        // Se ejecuta cuando el contenido del DOM ha sido completamente cargado.
         document.addEventListener('DOMContentLoaded', function() {
+            // Referencias a los elementos del DOM para el manejo de la sesión.
             const loginButton = document.getElementById('login-button');
             const loggedInSection = document.getElementById('logged-in-section');
             const welcomeMessage = document.getElementById('welcome-message');
             const logoutButton = document.getElementById('logout-btn');
 
-            // Ocultar ambos por defecto hasta que se determine el estado de la sesión
+            // Ocultar ambos contenedores por defecto para evitar parpadeos mientras se verifica la sesión.
             loginButton.style.display = 'none';
             loggedInSection.style.display = 'none';
 
+            // Petición a la API para verificar si el usuario ha iniciado sesión.
             fetch('api/verificar_sesion.php')
-                .then(response => response.json())
+                .then(response => response.json()) // Convierte la respuesta a JSON.
                 .then(data => {
-                    if (data.logueado) {
+                    if (data.logueado) { // Si el usuario está logueado.
+                        // Muestra un mensaje de bienvenida y la sección de usuario logueado.
                         welcomeMessage.textContent = `¡Hola ${data.email}, esperamos que disfrutes tu experiencia!`;
                         loggedInSection.style.display = 'flex';
                         loginButton.style.display = 'none';
 
-                        // Ocultar el mensaje de bienvenida después de 5 segundos con fade out
+                        // Ocultar el mensaje de bienvenida después de 5 segundos con un efecto de desvanecimiento.
                         setTimeout(() => {
                             welcomeMessage.style.opacity = '0';
                             setTimeout(() => {
                                 welcomeMessage.style.display = 'none';
-                            }, 500); // Duración de la transición en CSS
-                        }, 5000); // 5000 milisegundos = 5 segundos
-                    } else {
-                        loginButton.style.display = 'block'; // O 'inline-block' según tu CSS
+                            }, 500); // Coincide con la duración de la transición CSS.
+                        }, 5000); // 5 segundos.
+                    } else { // Si el usuario no está logueado.
+                        // Muestra el botón de "Iniciar Sesión".
+                        loginButton.style.display = 'block';
                         loggedInSection.style.display = 'none';
                     }
                 })
-                .catch(error => {
+                .catch(error => { // En caso de error en la petición.
                     console.error('Error al verificar la sesión:', error);
-                    // En caso de error, mostrar el botón de iniciar sesión por defecto
+                    // Muestra el botón de "Iniciar Sesión" como opción segura por defecto.
                     loginButton.style.display = 'block';
                     loggedInSection.style.display = 'none';
                 });
 
-            // Manejar el clic del botón de cerrar sesión
+            // Añade un listener al botón de "Cerrar Sesión".
             logoutButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.location.href = 'logout.php?origen=index';
+                e.preventDefault(); // Previene la acción por defecto del enlace.
+                window.location.href = 'logout.php?origen=index'; // Redirige a la página de logout.
             });
         });
     </script>
 </body>
+</html>

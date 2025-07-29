@@ -1,3 +1,15 @@
+/*
+* Este es el archivo principal de scripts para la interfaz dinámica del panel de usuario.
+* Gestiona la navegación y la interactividad de la página principal después del login.
+*
+* Funcionalidades clave:
+* - Control de menús y submenús: Muestra y oculta diferentes secciones de contenido según la interacción del usuario.
+* - Carga de contenido dinámico: Realiza peticiones a una API para obtener y mostrar información como la lista de clases, los entrenadores y las opciones de reserva.
+* - Navegación dinámica: Permite al usuario moverse entre diferentes vistas (menú principal, submenús, contenido detallado) y volver atrás con un botón "Volver".
+* - Interacción con el usuario: Maneja los clics en los diferentes elementos de la interfaz, como los círculos de opciones.
+* - Reservas de clases: Incluye la lógica para verificar si el usuario está logueado antes de permitirle reservar una clase y procesa la reserva.
+* - Notificaciones y efectos visuales: Proporciona feedback al usuario a través de notificaciones emergentes y mejora la experiencia con animaciones, efectos de vibración y partículas de fondo.
+*/
 document.addEventListener('DOMContentLoaded', function() {
     // Elementos del DOM
     const menuItems = document.querySelectorAll('.menu-item');
