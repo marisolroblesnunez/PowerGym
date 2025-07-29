@@ -1,0 +1,288 @@
+# Manual de Usuario - PowerGym
+
+![PowerGym Logo](https://via.placeholder.com/200x80/8a2be2/FFFFFF?text=PowerGym)
+
+**Tu fuerza, nuestro compromiso**
+
+---
+
+## Índice
+
+1. [Introducción](#introducción)
+2. [Registro e Inicio de Sesión](#registro-e-inicio-de-sesión)
+3. [Navegación Principal](#navegación-principal)
+4. [Gestión de Clases](#gestión-de-clases)
+5. [Sistema de Reservas](#sistema-de-reservas)
+6. [Testimonios y Reseñas](#testimonios-y-reseñas)
+7. [Información de Entrenadores](#información-de-entrenadores)
+8. [Chatbot de Asistencia](#chatbot-de-asistencia)
+9. [Solución de Problemas](#solución-de-problemas)
+
+---
+
+## Introducción
+
+PowerGym es una plataforma web diseñada para facilitar la gestión de tu experiencia en el gimnasio. A través de nuestra aplicación web puedes reservar clases, conocer a nuestros entrenadores, dejar testimonios y mucho más.
+
+### Características Principales
+
+- 🏋️ **Visualización de clases disponibles** con información detallada
+- 📅 **Sistema de reservas** para asegurar tu cupo en las clases
+- ⭐ **Testimonios** para compartir tu experiencia
+- 👨‍🏫 **Información de entrenadores** especializados
+- 💬 **Chatbot integrado** para asistencia inmediata
+- 📱 **Diseño responsive** compatible con móviles y tablets
+
+---
+
+## Registro e Inicio de Sesión
+
+### Crear una Cuenta Nueva
+
+1. **Accede a la página principal** de PowerGym
+2. **Haz clic en "Iniciar Sesión"** en la esquina superior derecha
+3. **Selecciona "Crear cuenta nueva"** en la parte inferior del formulario
+4. **Completa el formulario** con:
+   - Correo electrónico válido
+   - Contraseña segura
+5. **Haz clic en "Registrarse"**
+6. **Verifica tu correo** (en modo local aparecerá un mensaje de confirmación)
+
+### Iniciar Sesión
+
+1. **Introduce tu correo electrónico** registrado
+2. **Introduce tu contraseña**
+3. **Haz clic en "Iniciar Sesión"**
+
+> **💡 Tip:** Si olvidas tu contraseña, utiliza la opción "Recuperar contraseña" en la página de login.
+
+### Recuperar Contraseña
+
+1. **Haz clic en "Recuperar contraseña"** en la página de login
+2. **Introduce tu correo electrónico** registrado
+3. **Revisa tu correo** para el enlace de recuperación
+4. **Sigue las instrucciones** en el correo recibido
+
+---
+
+## Navegación Principal
+
+Una vez iniciada la sesión, accederás al menú principal con tres secciones:
+
+### 💪 Mi Fitness
+Accede a toda la información relacionada con tu entrenamiento:
+
+- **🏋️ Clases**: Visualiza todas las clases disponibles
+- **👨‍🏫 Entrenadores**: Conoce a nuestro equipo de profesionales
+- **🥗 Dieta**: Información nutricional y planes alimenticios
+
+### 🏃 Mi Actividad
+Gestiona tu participación en el gimnasio:
+
+- **📅 Reserva tus Clases**: Sistema completo de reservas
+
+### ⚙️ Más
+Funciones adicionales:
+
+- **⭐ Reseñas**: Lee y escribe testimonios
+- **🔔 Notificaciones**: Promociones y avisos importantes
+
+---
+
+## Gestión de Clases
+
+### Visualizar Clases Disponibles
+
+1. **Accede a "Mi Fitness"** → **"Clases"**
+2. **Explora las clases** organizadas por días de la semana
+3. **Revisa la información** de cada clase:
+   - Nombre de la clase
+   - Descripción detallada
+   - Día y horario
+   - Duración en minutos
+   - Entrenador asignado
+   - Cupo disponible (inscritos actuales / máximo)
+
+### Filtrar Clases por Día
+
+1. **Utiliza el menú desplegable** "Filtrar por Día"
+2. **Selecciona el día** de tu interés
+3. **Visualiza únicamente** las clases de ese día
+
+### Información de Clases
+
+Cada clase muestra:
+
+- **📋 Descripción**: Qué tipo de actividad realizarás
+- **📅 Programación**: Día de la semana y hora exacta
+- **⏱️ Duración**: Tiempo que dura la clase
+- **👨‍🏫 Entrenador**: Profesional que dirigirá la clase
+- **👥 Disponibilidad**: Cupos ocupados vs. total disponible
+
+---
+
+## Sistema de Reservas
+
+### Realizar una Reserva
+
+1. **Inicia sesión** en tu cuenta
+2. **Navega a "Mi Actividad"** → **"Reserva tus Clases"**
+3. **Selecciona la clase** de tu interés
+4. **Verifica la disponibilidad** (debe mostrar cupos libres)
+5. **Haz clic en "Inscribirse"** o el botón de reserva
+6. **Confirma tu reserva** cuando aparezca el mensaje de éxito
+
+### Estados de las Clases
+
+- **✅ Disponible**: Puedes reservar tu cupo
+- **❌ Cupo Lleno**: No hay espacios disponibles
+- **✅ Ya Inscrito**: Ya tienes una reserva confirmada
+
+### Cancelar una Reserva
+
+> **Nota:** La funcionalidad de cancelación puede requerir contactar con el gimnasio directamente o estar disponible en futuras versiones.
+
+---
+
+## Testimonios y Reseñas
+
+### Leer Testimonios
+
+1. **Accede a "Más"** → **"Reseñas"**
+2. **Explora los testimonios** de otros usuarios
+3. **Lee las experiencias** compartidas por la comunidad
+
+### Escribir un Testimonio
+
+1. **Haz clic en "Escribir Reseña"**
+2. **Redacta tu mensaje** (mínimo 10 caracteres)
+3. **Haz clic en "Enviar Reseña"**
+4. **Espera la aprobación** del administrador para que sea visible
+
+> **📝 Importante:** Los testimonios pasan por un proceso de moderación antes de ser publicados.
+
+### Consejos para Escribir Reseñas
+
+- Sé específico sobre tu experiencia
+- Menciona clases o entrenadores que te gustaron
+- Mantén un tono constructivo y respetuoso
+- Comparte resultados o logros alcanzados
+
+---
+
+## Información de Entrenadores
+
+### Conocer al Equipo
+
+1. **Accede a "Mi Fitness"** → **"Entrenadores"**
+2. **Explora los perfiles** de nuestros profesionales
+3. **Revisa su información**:
+   - Nombre y especialidad
+   - Experiencia y certificaciones
+   - Clases que imparten
+   - Información de contacto
+
+### Contactar con un Entrenador
+
+- Utiliza la información de contacto proporcionada
+- Consulta sobre programas específicos
+- Solicita asesoramiento personalizado
+
+---
+
+## Chatbot de Asistencia
+
+### Usar el Asistente Virtual
+
+1. **Haz clic en el ícono del chat** 💬 (esquina inferior derecha)
+2. **Escribe tu pregunta** o selecciona una respuesta rápida
+3. **Recibe asistencia inmediata** sobre:
+   - Servicios del gimnasio
+   - Horarios de funcionamiento
+   - Información de contacto
+   - Preguntas frecuentes
+
+### Respuestas Rápidas Disponibles
+
+- **"Servicios"**: Información sobre los servicios ofrecidos
+- **"Horarios"**: Horarios de funcionamiento del gimnasio
+- **"Contacto"**: Formas de contactar con el gimnasio
+
+---
+
+## Solución de Problemas
+
+### Problemas Comunes
+
+#### No puedo iniciar sesión
+- ✅ Verifica que tu correo esté correctamente escrito
+- ✅ Asegúrate de que tu contraseña sea correcta
+- ✅ Utiliza "Recuperar contraseña" si es necesario
+- ✅ Verifica que tu cuenta esté activada
+
+#### No puedo reservar una clase
+- ✅ Asegúrate de haber iniciado sesión
+- ✅ Verifica que la clase tenga cupos disponibles
+- ✅ Confirma que no estés ya inscrito en esa clase
+- ✅ Recarga la página e intenta nuevamente
+
+#### Mi testimonio no aparece
+- ✅ Los testimonios requieren aprobación del administrador
+- ✅ Espera unas horas para que sea revisado
+- ✅ Asegúrate de que cumpla con las políticas del gimnasio
+
+#### La página no carga correctamente
+- ✅ Refresca la página (F5 o Ctrl+R)
+- ✅ Limpia la caché de tu navegador
+- ✅ Verifica tu conexión a internet
+- ✅ Intenta con otro navegador
+
+### Contacto para Soporte
+
+Si continúas experimentando problemas:
+
+- **📧 Email**: soporte@powergym.com
+- **📞 Teléfono**: [Número de contacto]
+- **💬 Chat**: Utiliza nuestro chatbot integrado
+- **📍 Presencial**: Visita nuestras instalaciones
+
+---
+
+## Consejos de Uso
+
+### Mejores Prácticas
+
+1. **📱 Acceso Móvil**: La plataforma está optimizada para dispositivos móviles
+2. **🔐 Seguridad**: No compartas tus credenciales de acceso
+3. **⏰ Reservas Tempranas**: Reserva con anticipación para asegurar tu cupo
+4. **📝 Feedback**: Utiliza la sección de testimonios para ayudar a otros usuarios
+5. **🔄 Actualizaciones**: Mantén tu información de perfil actualizada
+
+### Navegadores Recomendados
+
+- Google Chrome (versión 80+)
+- Firefox (versión 75+)
+- Safari (versión 13+)
+- Microsoft Edge (versión 80+)
+
+---
+
+## Actualizaciones y Nuevas Funciones
+
+PowerGym se actualiza constantemente para mejorar tu experiencia. Mantente atento a:
+
+- 🆕 Nuevas funcionalidades
+- 🐛 Correcciones de errores
+- 🎨 Mejoras en el diseño
+- 📈 Optimizaciones de rendimiento
+
+---
+
+**¿Necesitas más ayuda?**
+
+No dudes en contactarnos o utilizar nuestro chatbot integrado para obtener asistencia inmediata. ¡Estamos aquí para hacer tu experiencia en PowerGym lo más satisfactoria posible!
+
+---
+
+*Última actualización: Julio 2025*
+*Versión del manual: 1.0*
